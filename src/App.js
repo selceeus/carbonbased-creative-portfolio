@@ -42,8 +42,8 @@ function App() {
 
         const fetchData = async () => {
             try {
-                const result = await auth.authAxios
-                    .get( auth.apiUrl + "/wp/v2/pages" )
+                const result = await authAxios
+                    .get( apiUrl + "/wp/v2/pages" )
                     .then( result => setData(result.data) );
 
             } catch(err) {
@@ -61,7 +61,6 @@ function App() {
                 <img src="logo512.png" className="App-logo" alt="logo" />
                 <ul>
                     {data.map(item => (
-                        console.log(item)
                         <li key={item.id}>
                             <h3 className="titles">{item.slug}</h3>
                             <p>{item.slug}</p>
