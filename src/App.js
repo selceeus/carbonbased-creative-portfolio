@@ -5,22 +5,50 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 
+const apiUrl = "https://cms.matthewa.development/wp-json";
+
+const loginData = {
+    username: "selceeus",
+    password: "1201ButterGus!"
+};
+
+axios
+    .post('https://cms.matthewa.development/wp-json/jwt-auth/v1/token', loginData)
+    .then((res) => {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user_nicename', res.data.user_nicename);
+        localStorage.setItem('user_email', res.data.user_email);
+        localStorage.setItem('user_display_name', res.data.user_display_name);
+    })
+    .catch((err) => {
+        console.log(err);
+});
+
+
+const authAxios = axios
+    .create({
+        baseUrl: apiUrl,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+});
 
 function App() {
 
     const [data, setData] = useState([]);
+    const [requestError, setRequestError] = useState([]);
 
     useEffect(() => {
 
         const fetchData = async () => {
+            try {
+                const result = await auth.authAxios
+                    .get( auth.apiUrl + "/wp/v2/pages" )
+                    .then( result => setData(result.data) );
 
-            const secretToken = "ry5N+C*(||&B@_-Z~I|_|@D[;?-)!mfh#AX(;$~+Agm";
-
-            const api = "https://cms.matthewa.development/wp-json/wp/v2/pages";
-
-            const result = await axios
-            .get(api, { headers: {"Authorization" : `Bearer ${token}`} } )
-            .then(result => setData(result.data))
+            } catch(err) {
+                setRequestError(err.message);
+            }
         };
 
         fetchData();
@@ -33,8 +61,10 @@ function App() {
                 <img src="logo512.png" className="App-logo" alt="logo" />
                 <ul>
                     {data.map(item => (
+                        console.log(item)
                         <li key={item.id}>
                             <h3 className="titles">{item.slug}</h3>
+                            <p>{item.slug}</p>
                         </li>
                     ))}
                 </ul>
