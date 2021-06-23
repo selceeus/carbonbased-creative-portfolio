@@ -10,21 +10,20 @@ function App() {
 
     const [data, setData] = useState([]);
 
-  useEffect(() => {
+    useEffect(() => {
 
-    const fetchData = async () => {
+        const fetchData = async () => {
 
-        const secretToken = "ry5N+C*(||&B@_-Z~I|_|@D[;?-)!mfh#AX(;$~+Agm";
+            const secretToken = "ry5N+C*(||&B@_-Z~I|_|@D[;?-)!mfh#AX(;$~+Agm";
 
-        const api = "https://cms.matthewa.development/wp-json/wp/v2/pages";
-        
-        const result = await axios
-        .get(api, { headers: {"Authorization" : `Bearer ${token}`} } )
-        .then(result => setData(result.data))
+            const api = "https://cms.matthewa.development/wp-json/wp/v2/pages";
 
-      };
-   
-      fetchData();
+            const result = await axios
+            .get(api, { headers: {"Authorization" : `Bearer ${token}`} } )
+            .then(result => setData(result.data))
+        };
+
+        fetchData();
       
     }, []);
 
