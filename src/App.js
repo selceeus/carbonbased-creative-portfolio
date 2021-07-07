@@ -58,15 +58,7 @@ function App() {
     return (
         <section className="App">
             <header className="App-header" role="region">
-                <img src="logo512.png" className="App-logo" alt="logo" />
-                <ul>
-                    {data.map(item => (
-                        <li key={item.id}>
-                            <h3 className="titles">{item.slug}</h3>
-                            <p>{item.slug}</p>
-                        </li>
-                    ))}
-                </ul>
+                <img src="/img/logos/logo.svg" className="App-logo" alt="logo" />
                 {/*<Route render={({location}) => (
                     <TransitionGroup>
                         <CSSTransition key={location.key} classNames="fade" timeout={300}>
@@ -84,7 +76,14 @@ function App() {
                 )} />*/}
             </header>
             <main role="main">
-                <p>Hello to new site - This is a test again</p>
+                <ul>
+                    {data.map(item => (
+                        <li key={item.id}>
+                            <h3 className="titles">{item.slug}</h3>
+                            <p>{item.slug}</p>
+                        </li>
+                    ))}
+                </ul>
             </main>
             <footer role="region">
                 <p>this is the footer</p>
