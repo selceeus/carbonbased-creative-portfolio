@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Switch, Route, Redirect } from 'react-router-dom';
+import Footer from './components/footer/footer.component';
+
 import './App.scss';
 
 const apiUrl = "https://cms.matthewa.development/wp-json";
@@ -59,6 +61,8 @@ function App() {
         <section className="App">
             <header className="App-header" role="region">
                 <img src="/img/logos/logo.svg" className="App-logo" alt="logo" />
+            </header>
+            <main role="main">
                 {/*<Route render={({location}) => (
                     <TransitionGroup>
                         <CSSTransition key={location.key} classNames="fade" timeout={300}>
@@ -74,8 +78,6 @@ function App() {
                         </CSSTransition>
                     </TransitionGroup>
                 )} />*/}
-            </header>
-            <main role="main">
                 <ul>
                     {data.map(item => (
                         <li key={item.id}>
@@ -85,9 +87,7 @@ function App() {
                     ))}
                 </ul>
             </main>
-            <footer role="region">
-                <p>this is the footer</p>
-            </footer>
+            <Footer />
         </section>
     );
 }
