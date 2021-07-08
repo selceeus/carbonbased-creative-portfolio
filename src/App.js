@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Switch, Route, Redirect } from 'react-router-dom';
+import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 
 import './App.scss';
@@ -58,11 +59,9 @@ function App() {
 
     return (
         <section className="App">
-            <header className="App-header" role="region">
-                <img src="/img/logos/logo.svg" className="App-logo" alt="logo" />
-            </header>
+            <Header />
             <main role="main">
-                {/*<Route render={({location}) => (
+                <Route render={({location}) => (
                     <TransitionGroup>
                         <CSSTransition key={location.key} classNames="fade" timeout={300}>
                             <Switch>
@@ -71,14 +70,13 @@ function App() {
                                 <Route path='/map' component={Map} />
                                 <Route exact path='/detailed-listing/:breweryId' component={DetailedListing} />
                                 <Route path='/contact' component={Contact} />
-                                <Route path='/sign-up' component={Signup} />
                                 <Redirect to='/' />
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>
-                )} />*/}
+                )} />
                 {console.log(data)}
-                <h1 dangerouslySetInnerHTML={{ __html: data.content.rendered }} />
+                
                 <ul>
                     {/*{data.map(item => (
                         <li key={item.id}>
