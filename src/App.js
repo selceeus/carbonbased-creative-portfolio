@@ -45,16 +45,15 @@ function App() {
         const fetchData = async () => {
             try {
                 const result = await authAxios
-                    .get( apiUrl + "/wp/v2/pages" )
+                    .get( apiUrl + "/wp/v2/pages/62" )
                     .then( result => setData(result.data) );
 
             } catch(err) {
                 setRequestError(err.message);
             }
         };
-
+        
         fetchData();
-      
     }, []);
 
     return (
@@ -78,13 +77,15 @@ function App() {
                         </CSSTransition>
                     </TransitionGroup>
                 )} />*/}
+                {console.log(data)}
+                <h1 dangerouslySetInnerHTML={{ __html: data.content.rendered }} />
                 <ul>
-                    {data.map(item => (
+                    {/*{data.map(item => (
                         <li key={item.id}>
                             <h3 className="titles">{item.slug}</h3>
                             <p>{item.slug}</p>
                         </li>
-                    ))}
+                    ))}*/}
                 </ul>
             </main>
             <Footer />
