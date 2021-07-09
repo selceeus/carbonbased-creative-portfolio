@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+//import parse from 'html-react-parser';
 import './home.styles.scss';
 
 const {REACT_APP_API_URL} = process.env;
@@ -15,7 +16,7 @@ const authAxios = axios
 function Home() {
 
     const [data, setData] = useState([]);
-    const [requestError, setRequestError] = useState([]);
+    const [setRequestError] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {

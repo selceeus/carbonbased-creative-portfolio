@@ -15,7 +15,7 @@ const authAxios = axios
 function About() {
 
     const [data, setData] = useState([]);
-    const [requestError, setRequestError] = useState([]);
+    const [setRequestError] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
