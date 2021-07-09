@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { 
     Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem,
-    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
     Modal, ModalHeader, ModalBody,
     Form, FormGroup ,Label, Input, Button
 } from 'reactstrap';
@@ -75,99 +74,8 @@ class Header extends Component {
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={isNavOpen} navbar>
                             <Nav navbar className="navbar-nav ml-auto">
-                                <UncontrolledDropdown>
-                                    <DropdownToggle className="nav-link" caret>
-                                        Cities
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                        <DropdownItem>
-                                            <Link to={{
-                                                pathname: "/city-listing/boulder",
-                                                state: { 
-                                                    cityName: 'Boulder',
-                                                    cityId: 164
-                                                }
-                                            }}
-                                            >
-                                            Boulder
-                                            </Link>
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            <Link to={{
-                                                    pathname: "/city-listing/colorado-springs",
-                                                    state: { 
-                                                        cityName: 'Colorado Springs',
-                                                        cityId: 162
-                                                    }
-                                                }}
-                                            >
-                                            Colorado Springs
-                                            </Link>
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            <Link to={{
-                                                    pathname: "/city-listing/denver",
-                                                    state: { 
-                                                        cityName: 'Denver',
-                                                        cityId: 161
-                                                    }
-                                                }}
-                                            >
-                                            Denver
-                                            </Link>
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            <Link to={{
-                                                    pathname: "/city-listing/durango",
-                                                    state: { 
-                                                        cityName: 'Durango',
-                                                        cityId: 166
-                                                    }
-                                                }}
-                                            >
-                                            Durango
-                                            </Link>
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            <Link to={{
-                                                    pathname: "/city-listing/ft-collins",
-                                                    state: { 
-                                                        cityName: 'Fort Collins',
-                                                        cityId: 163
-                                                    }
-                                                }}
-                                            >
-                                            Ft. Collins
-                                            </Link>
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            <Link to={{
-                                                    pathname: "/city-listing/pueblo",
-                                                    state: { 
-                                                        cityName: 'Pueblo',
-                                                        cityId: 167
-                                                    }
-                                                }}
-                                            >
-                                            Pueblo
-                                            </Link>
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            <Link to={{
-                                                    pathname: "/city-listing/summit-county",
-                                                    state: { 
-                                                        cityName: 'Summit County',
-                                                        cityId: 165
-                                                    }
-                                                }}
-                                            >
-                                            Summit County
-                                            </Link>
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
                                 <NavItem>
-                                    <NavLink className="map-page nav-link" to={{ pathname: "/map"}}>Map</NavLink>
+                                    <NavLink className="home-page nav-link" to={{ pathname: "/"}}>Home</NavLink>
                                 </NavItem>
                                 <span className="navbar-text ml-auto">
                             </span>

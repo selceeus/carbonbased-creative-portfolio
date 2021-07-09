@@ -1,9 +1,15 @@
-//import logo from '/logo.svg';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Switch, Route, Redirect } from 'react-router-dom';
-import Header from './components/header/header.component';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+
+//Imported Components 
+import Home from './pages/home/home.component';
+import About from './pages/about/about.component';
+import Solutions from './pages/solutions/solutions.component';
+import Journal from './pages/journal/journal.component';
+import DetailedJournal from './pages/detailed-journal/detailed-journal.component';
+import Contact from './pages/contact/contact.component';
 import Footer from './components/footer/footer.component';
 
 import './App.scss';
@@ -26,7 +32,6 @@ axios
     .catch((err) => {
         console.log(err);
 });
-
 
 const authAxios = axios
     .create({
@@ -59,32 +64,23 @@ function App() {
 
     return (
         <section className="App">
-            <Header />
+            <Route render={({location}) => (
+                <TransitionGroup>
+                    <CSSTransition key={location.key} classNames="fade" timeout={300}>
+                        <Switch>
+                            <Route exact path='/' component={Home} />
+                            <Route path='/about' component={About} />
+                            <Route path='/solutions' component={Solutions} />
+                            <Route exact path='/journal/' component={Journal} />
+                            <Route exact path='/journal/:journalId' component={DetailedJournal} />
+                            <Route path='/contact' component={Contact} />
+                            <Redirect to='/' />
+                        </Switch>
+                    </CSSTransition>
+                </TransitionGroup>
+            )} />
             <main role="main">
-                <Route render={({location}) => (
-                    <TransitionGroup>
-                        <CSSTransition key={location.key} classNames="fade" timeout={300}>
-                            <Switch>
-                                <Route exact path='/' component={Homepage} />
-                                <Route path='/city-listing/:cityName' component={CityListing} />
-                                <Route path='/map' component={Map} />
-                                <Route exact path='/detailed-listing/:breweryId' component={DetailedListing} />
-                                <Route path='/contact' component={Contact} />
-                                <Redirect to='/' />
-                            </Switch>
-                        </CSSTransition>
-                    </TransitionGroup>
-                )} />
-                {console.log(data)}
-                
-                <ul>
-                    {/*{data.map(item => (
-                        <li key={item.id}>
-                            <h3 className="titles">{item.slug}</h3>
-                            <p>{item.slug}</p>
-                        </li>
-                    ))}*/}
-                </ul>
+            
             </main>
             <Footer />
         </section>
