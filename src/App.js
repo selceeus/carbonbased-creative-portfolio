@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+//import { TransitionGroup, CSSTransition } from "react-transition-group";
 import {
     BrowserRouter as Router,
     Switch,
@@ -21,15 +21,15 @@ import Footer from './components/footer/footer.component';
 
 import './App.scss';
 
-const apiUrl = "https://cms.matthewa.development/wp-json";
+const {REACT_APP_API_URL, REACT_APP_JWT_AUTH_USERNAME, REACT_APP_JWT_AUTH_PASSWORD} = process.env;
 
 const loginData = {
-    username: "selceeus",
-    password: "1201ButterGus!"
+    username: REACT_APP_JWT_AUTH_USERNAME,
+    password: REACT_APP_JWT_AUTH_PASSWORD
 };
 
 axios
-    .post('https://cms.matthewa.development/wp-json/jwt-auth/v1/token', loginData)
+    .post(`${REACT_APP_API_URL}wp-json/jwt-auth/v1/token`, loginData)
     .then((res) => {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('user_nicename', res.data.user_nicename);
@@ -40,37 +40,12 @@ axios
         console.log(err);
 });
 
-const authAxios = axios
-    .create({
-        baseUrl: apiUrl,
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-});
-
 function App() {
-
-    const [data, setData] = useState([]);
-    const [requestError, setRequestError] = useState([]);
-
-    useEffect(() => {
-
-        const fetchData = async () => {
-            try {
-                const result = await authAxios
-                    .get( apiUrl + "/wp/v2/pages/62" )
-                    .then( result => setData(result.data) );
-
-            } catch(err) {
-                setRequestError(err.message);
-            }
-        };
-        
-        fetchData();
-    }, []);
 
     return (
         <section className="App">
+
+            <Header />
             
             <main role="main">
 
@@ -130,7 +105,7 @@ function App() {
             </main>
 
             <Footer />
-            
+
         </section>
     );
 }

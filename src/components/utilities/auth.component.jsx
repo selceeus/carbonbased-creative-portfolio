@@ -8,7 +8,7 @@ function Auth() {
         username: "selceeus",
         password: "1201ButterGus!"
     };
-
+    
     axios
         .post('https://cms.matthewa.development/wp-json/jwt-auth/v1/token', loginData)
         .then((res) => {
@@ -19,6 +19,14 @@ function Auth() {
         })
         .catch((err) => {
             console.log(err);
+    });
+    
+    const authAxios = axios
+        .create({
+            baseUrl: apiUrl,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
     });
 
 }
