@@ -3,9 +3,9 @@ import './journal.styles.scss';
 
 const Journal = props => {
     return(
-        <main role="main">
-           
-        </main>
+        <section className="journal">
+            <h1>Journal</h1>
+        </section>
     );
 }
 

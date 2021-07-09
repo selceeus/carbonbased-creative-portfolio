@@ -3,9 +3,9 @@ import './solutions.styles.scss';
 
 const Solutions = props => {
     return(
-        <main role="main">
-           
-        </main>
+        <section className="solutions">
+            <h1>Solutions</h1>
+        </section>
     );
 }
 

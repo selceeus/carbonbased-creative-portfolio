@@ -3,9 +3,9 @@ import './work.styles.scss';
 
 const Work = props => {
     return(
-        <main role="main">
-           
-        </main>
+        <section className="work">
+            <h1>Work</h1>
+        </section>
     );
 }
 

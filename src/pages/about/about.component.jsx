@@ -3,16 +3,9 @@ import './about.styles.scss';
 
 const About = props => {
     return(
-        <main role="main">
-            <ul>
-                {props.map(item => (
-                    <li key={item.id}>
-                        <h3 className="titles">{item.slug}</h3>
-                        <p>{item.slug}</p>
-                    </li>
-                ))}
-            </ul>
-        </main>
+        <section className="about">
+            <h1>About</h1>
+        </section>
     );
 }
 

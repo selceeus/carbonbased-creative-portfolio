@@ -3,9 +3,9 @@ import './contact.styles.scss';
 
 const Contact = props => {
     return(
-        <main role="main">
-           
-        </main>
+        <section className="contact">
+            <h1>Contact</h1>
+        </section>
     );
 }
 
