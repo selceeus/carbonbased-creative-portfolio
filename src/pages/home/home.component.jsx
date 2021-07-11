@@ -20,7 +20,7 @@ function Home() {
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
 
-    const renderPage = apiData => {
+    const renderHome = apiData => {
 
         if(!Object.keys(apiData).length > 0) {
             return <Loader />;
@@ -60,7 +60,7 @@ function Home() {
     return(
         <section className="home">
             {console.log(data)}
-            {renderPage(data)}
+            {renderHome(data)}
         </section>
     );
 }
