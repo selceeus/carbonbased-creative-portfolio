@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import parse from 'html-react-parser';
 
 //Imported Components 
 import Loader from '../../components/utilities/loader.component';
@@ -28,14 +27,18 @@ function Home() {
         }
         else {
 
-            const title = () => { return{ __html: apiData.title.rendered } };
             const siteLead = () => { return{ __html: apiData.acf.site_lead.content } };
+            const whySection = () => { return{ __html: apiData.acf.why_section.content } };
+            const whatSection = () => { return{ __html: apiData.acf.what_section.content } };
+            const howSection = () => { return{ __html: apiData.acf.how_section.content } };
 
             return (
 
                 <div>
-                    <h1 dangerouslySetInnerHTML={title()}></h1>
                     <div dangerouslySetInnerHTML={siteLead()}></div>
+                    <div dangerouslySetInnerHTML={whySection()}></div>
+                    <div dangerouslySetInnerHTML={whatSection()}></div>
+                    <div dangerouslySetInnerHTML={howSection()}></div>
                 </div>
             );
         }
@@ -56,6 +59,7 @@ function Home() {
 
     return(
         <section className="home">
+            {console.log(data)}
             {renderPage(data)}
         </section>
     );
