@@ -65,6 +65,7 @@ function Work() {
     return(
         <section className="work">
             {console.log(postData)}
+            {console.log(pageData)}
         </section>
     );
 }
