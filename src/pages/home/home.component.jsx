@@ -28,7 +28,6 @@ function Home() {
         else {
 
             const siteLead = () => { return{ __html: apiData.acf.site_lead.content } };
-            const howSection = () => { return{ __html: apiData.acf.how_section.content } };
 
             return (
                 <div className="hero">
