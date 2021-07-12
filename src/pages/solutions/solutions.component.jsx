@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import dompurify from 'dompurify';
+import parse from 'html-react-parser';
 
 //Imported Components
 import Loader from '../../components/utilities/loader.component';
@@ -57,9 +58,8 @@ function Solutions() {
         const productsTitle = () => { return{ __html: sanitize(apiData.acf.product_section.headline) } };
         const productsItems = apiData.acf.product_section.product_items.map( (item, index) =>
             <li key={index}>
-                <h4>{item.title}</h4>
-                <img src={item.icon} alt="" />
-                <p>{item.content}</p>
+                <img src={parse(item.icon)} alt="" />
+                {parse(item.content)}
             </li>
         );
 
