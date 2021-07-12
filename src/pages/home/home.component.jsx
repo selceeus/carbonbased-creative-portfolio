@@ -20,7 +20,7 @@ function Home() {
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
 
-    const renderHome = apiData => {
+    const renderHomeHero = apiData => {
 
         if(!Object.keys(apiData).length > 0) {
             return <Loader />;
@@ -28,15 +28,61 @@ function Home() {
         else {
 
             const siteLead = () => { return{ __html: apiData.acf.site_lead.content } };
-            const whySection = () => { return{ __html: apiData.acf.why_section.content } };
-            const whatSection = () => { return{ __html: apiData.acf.what_section.content } };
             const howSection = () => { return{ __html: apiData.acf.how_section.content } };
 
             return (
-                <div>
+                <div className="hero">
                     <div dangerouslySetInnerHTML={siteLead()}></div>
+                </div>
+            );
+        }
+    }
+
+    const renderHomeWhy = apiData => {
+
+        if(!Object.keys(apiData).length > 0) {
+            return <Loader />;
+        }
+        else {
+
+            const whySection = () => { return{ __html: apiData.acf.why_section.content } };
+
+            return (
+                <div className="why">
                     <div dangerouslySetInnerHTML={whySection()}></div>
+                </div>
+            );
+        }
+    }
+
+    const renderHomeWhat = apiData => {
+
+        if(!Object.keys(apiData).length > 0) {
+            return <Loader />;
+        }
+        else {
+
+            const whatSection = () => { return{ __html: apiData.acf.what_section.content } };
+
+            return (
+                <div className="what">
                     <div dangerouslySetInnerHTML={whatSection()}></div>
+                </div>
+            );
+        }
+    }
+
+    const renderHomeHow = apiData => {
+
+        if(!Object.keys(apiData).length > 0) {
+            return <Loader />;
+        }
+        else {
+
+            const howSection = () => { return{ __html: apiData.acf.how_section.content } };
+
+            return (
+                <div className="how">
                     <div dangerouslySetInnerHTML={howSection()}></div>
                 </div>
             );
@@ -59,7 +105,10 @@ function Home() {
     return(
         <section className="home">
             {console.log(data)}
-            {renderHome(data)}
+            {renderHomeHero(data)}
+            {renderHomeWhy(data)}
+            {renderHomeWhat(data)}
+            {renderHomeHow(data)}
         </section>
     );
 }

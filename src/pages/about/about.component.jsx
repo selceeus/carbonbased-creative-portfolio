@@ -20,7 +20,7 @@ function About() {
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
 
-    const renderAbout = apiData => {
+    const renderAboutHero = apiData => {
 
         if(!Object.keys(apiData).length > 0) {
             return <Loader />;
@@ -30,36 +30,60 @@ function About() {
             const sectionTitle = () => { return{ __html: apiData.title.rendered } };
             const sectionLead = () => { return{ __html: apiData.acf.section_lead.content } };
 
-            //Approach Section
-            const approachLead = () => { return{ __html: apiData.acf.approach_section.headline } };
-            const approachDiscover = () => { return{ __html: apiData.acf.approach_section.approach_items[0].content } };
-            const approachCreate = () => { return{ __html: apiData.acf.approach_section.approach_items[1].content } };
-            const approachSupport = () => { return{ __html: apiData.acf.approach_section.approach_items[2].content } };
-
-            //Experience Section
-            const expLead = () => { return{ __html: apiData.acf.experience_section.headline } };
-            const expCreative = () => { return{ __html: apiData.acf.experience_section.experience_items[0].content } };
-            const expProduct = () => { return{ __html: apiData.acf.experience_section.experience_items[1].content } };
-            const expDev = () => { return{ __html: apiData.acf.experience_section.experience_items[2].content } };
-            const expMarketing = () => { return{ __html: apiData.acf.experience_section.experience_items[3].content } };
-
             return (
-                <div>
+                <div className="hero">
                     <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
                     <div dangerouslySetInnerHTML={sectionLead()}></div>
+                </div>
+            );
+        }
+    }
 
+    const renderAboutApproach = apiData => {
+
+        //Approach Section
+        const approachLead = () => { return{ __html: apiData.acf.approach_section.headline } };
+        const approachDiscover = () => { return{ __html: apiData.acf.approach_section.approach_items[0].content } };
+        const approachCreate = () => { return{ __html: apiData.acf.approach_section.approach_items[1].content } };
+        const approachSupport = () => { return{ __html: apiData.acf.approach_section.approach_items[2].content } };
+
+        if(!Object.keys(apiData).length > 0) {
+            return <Loader />;
+        }
+        else {
+            return(
+                <div className="approach">
                     <div dangerouslySetInnerHTML={approachLead()}></div>
                     <div dangerouslySetInnerHTML={approachDiscover()}></div>
                     <div dangerouslySetInnerHTML={approachCreate()}></div>
                     <div dangerouslySetInnerHTML={approachSupport()}></div>
+                </div>
+            )
+        }
+    }
 
+    const renderAboutExperience = apiData => {
+
+        //Experience Section
+        const expLead = () => { return{ __html: apiData.acf.experience_section.headline } };
+        const expCreative = () => { return{ __html: apiData.acf.experience_section.experience_items[0].content } };
+        const expProduct = () => { return{ __html: apiData.acf.experience_section.experience_items[1].content } };
+        const expDev = () => { return{ __html: apiData.acf.experience_section.experience_items[2].content } };
+        const expMarketing = () => { return{ __html: apiData.acf.experience_section.experience_items[3].content } };
+
+        if(!Object.keys(apiData).length > 0) {
+            return <Loader />;
+        }
+        else {
+            return(
+                <div className="experience">
                     <div dangerouslySetInnerHTML={expLead()}></div>
                     <div dangerouslySetInnerHTML={expCreative()}></div>
                     <div dangerouslySetInnerHTML={expProduct()}></div>
                     <div dangerouslySetInnerHTML={expDev()}></div>
                     <div dangerouslySetInnerHTML={expMarketing()}></div>
                 </div>
-            );
+            )
         }
     }
 
@@ -79,7 +103,9 @@ function About() {
     return(
         <section className="about">
             {console.log(data)}
-            {renderAbout(data)}
+            {renderAboutHero(data)}
+            {renderAboutApproach(data)}
+            {renderAboutExperience(data)}
         </section>
     );
 }
