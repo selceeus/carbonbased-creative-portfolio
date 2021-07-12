@@ -22,68 +22,66 @@ function Solutions() {
 
     const renderSolutionsHero = apiData => {
 
-        if(!Object.keys(apiData).length > 0) {
-            return <Loader />;
-        }
-        else {
+        const sectionTitle = () => { return{ __html: apiData.title.rendered } };
+        const sectionLead = () => { return{ __html: apiData.acf.section_lead.content } };
 
-            const sectionTitle = () => { return{ __html: apiData.title.rendered } };
-            const sectionLead = () => { return{ __html: apiData.acf.section_lead.content } };
-
-            return (
-                <div className="hero">
-                    <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
-                    <div dangerouslySetInnerHTML={sectionLead()}></div>
-                </div>
-            );
-        }
+        return (
+            <div className="hero">
+                <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
+                <div dangerouslySetInnerHTML={sectionLead()}></div>
+            </div>
+        );
     }
 
     const renderSolutionsServices = apiData => {
 
-        if(!Object.keys(apiData).length > 0) {
-            return <Loader />;
-        }
-        else {
+        const servicesTitle = () => { return{ __html: apiData.acf.services_section.headline } };
+        const servicesDev = () => { return{ __html: apiData.acf.services_section.services_item[0].content } };
+        const servicesCreative = () => { return{ __html: apiData.acf.services_section.services_item[1].content } };
+        const servicesDigi = () => { return{ __html: apiData.acf.services_section.services_item[2].content } };
 
-            const servicesTitle = () => { return{ __html: apiData.acf.services_section.headline } };
-            const servicesDev = () => { return{ __html: apiData.acf.services_section.services_item[0].content } };
-            const servicesCreative = () => { return{ __html: apiData.acf.services_section.services_item[1].content } };
-            const servicesDigi = () => { return{ __html: apiData.acf.services_section.services_item[2].content } };
-
-            return (
-                <div className="services">
-                    <h1 dangerouslySetInnerHTML={servicesTitle()}></h1>
-                    <div dangerouslySetInnerHTML={servicesDev()}></div>
-                    <div dangerouslySetInnerHTML={servicesCreative()}></div>
-                    <div dangerouslySetInnerHTML={servicesDigi()}></div>
-                </div>
-            );
-        }
+        return (
+            <div className="services">
+                <h1 dangerouslySetInnerHTML={servicesTitle()}></h1>
+                <div dangerouslySetInnerHTML={servicesDev()}></div>
+                <div dangerouslySetInnerHTML={servicesCreative()}></div>
+                <div dangerouslySetInnerHTML={servicesDigi()}></div>
+            </div>
+        );
     }
 
     const renderSolutionsProducts = apiData => {
 
+        const productsTitle = () => { return{ __html: apiData.acf.product_section.headline } };
+        const productsItems = apiData.acf.product_section.product_items.map( (item, index) =>
+            <li key={index}>
+                <h4>{item.title}</h4>
+                <img src={item.icon} alt="" />
+                <p>{item.content}</p>
+            </li>
+        );
+
+        return (
+            <div className="products">
+                <h1 dangerouslySetInnerHTML={productsTitle()}></h1>
+                <ul>{productsItems}</ul>
+            </div>
+        );
+    }
+
+    const renderPage = apiData => {
+
         if(!Object.keys(apiData).length > 0) {
             return <Loader />;
         }
         else {
-
-            const productsTitle = () => { return{ __html: apiData.acf.product_section.headline } };
-            const productsItems = apiData.acf.product_section.product_items.map( (item, index) => 
-                 <li key={index}>
-                    <h4>{item.title}</h4>
-                    <img src={item.icon} alt="" />
-                    <p>{item.content}</p>
-                </li>
-            );
-
-            return (
-                <div className="products">
-                    <h1 dangerouslySetInnerHTML={productsTitle()}></h1>
-                    <ul>{productsItems}</ul>
-                </div>
-            );
+            return(
+                <React.Fragment>
+                    {renderSolutionsHero(data)}
+                    {renderSolutionsServices(data)}
+                    {renderSolutionsProducts(data)}
+                </React.Fragment>
+            )
         }
     }
 
@@ -106,9 +104,7 @@ function Solutions() {
     return(
         <section className="solutions">
             {console.log(data)}
-            {renderSolutionsHero(data)}
-            {renderSolutionsServices(data)}
-            {renderSolutionsProducts(data)}
+            {renderPage(data)}
         </section>
     );
 }

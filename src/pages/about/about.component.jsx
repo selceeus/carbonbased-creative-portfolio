@@ -23,21 +23,16 @@ function About() {
 
     const renderAboutHero = apiData => {
 
-        if(!Object.keys(apiData).length > 0) {
-            return <Loader />;
-        }
-        else {
+        //Hero Section
+        const sectionTitle = () => { return{ __html: apiData.title.rendered } };
+        const sectionLead = () => { return{ __html: apiData.acf.section_lead.content } };
 
-            const sectionTitle = () => { return{ __html: apiData.title.rendered } };
-            const sectionLead = () => { return{ __html: apiData.acf.section_lead.content } };
-
-            return (
-                <div className="hero">
-                    <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
-                    <div dangerouslySetInnerHTML={sectionLead()}></div>
-                </div>
-            );
-        }
+        return (
+            <div className="hero">
+                <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
+                <div dangerouslySetInnerHTML={sectionLead()}></div>
+            </div>
+        );
     }
 
     const renderAboutApproach = apiData => {
@@ -48,19 +43,14 @@ function About() {
         const approachCreate = () => { return{ __html: apiData.acf.approach_section.approach_items[1].content } };
         const approachSupport = () => { return{ __html: apiData.acf.approach_section.approach_items[2].content } };
 
-        if(!Object.keys(apiData).length > 0) {
-            return <Loader />;
-        }
-        else {
-            return(
-                <div className="approach">
-                    <div dangerouslySetInnerHTML={approachLead()}></div>
-                    <div dangerouslySetInnerHTML={approachDiscover()}></div>
-                    <div dangerouslySetInnerHTML={approachCreate()}></div>
-                    <div dangerouslySetInnerHTML={approachSupport()}></div>
-                </div>
-            )
-        }
+        return(
+            <div className="approach">
+                <div dangerouslySetInnerHTML={approachLead()}></div>
+                <div dangerouslySetInnerHTML={approachDiscover()}></div>
+                <div dangerouslySetInnerHTML={approachCreate()}></div>
+                <div dangerouslySetInnerHTML={approachSupport()}></div>
+            </div>
+        )
     }
 
     const renderAboutExperience = apiData => {
@@ -72,18 +62,30 @@ function About() {
         const expDev = () => { return{ __html: apiData.acf.experience_section.experience_items[2].content } };
         const expMarketing = () => { return{ __html: apiData.acf.experience_section.experience_items[3].content } };
 
+        return(
+            <div className="experience">
+                <div dangerouslySetInnerHTML={expLead()}></div>
+                <div dangerouslySetInnerHTML={expCreative()}></div>
+                <div dangerouslySetInnerHTML={expProduct()}></div>
+                <div dangerouslySetInnerHTML={expDev()}></div>
+                <div dangerouslySetInnerHTML={expMarketing()}></div>
+            </div>
+        )
+    }
+
+    const renderPage = apiData => {
+
         if(!Object.keys(apiData).length > 0) {
             return <Loader />;
         }
         else {
             return(
-                <div className="experience">
-                    <div dangerouslySetInnerHTML={expLead()}></div>
-                    <div dangerouslySetInnerHTML={expCreative()}></div>
-                    <div dangerouslySetInnerHTML={expProduct()}></div>
-                    <div dangerouslySetInnerHTML={expDev()}></div>
-                    <div dangerouslySetInnerHTML={expMarketing()}></div>
-                </div>
+                <React.Fragment>
+                    {renderAboutHero(apiData)}
+                    {renderAboutApproach(apiData)}
+                    {renderAboutExperience(apiData)}
+                    <InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/>
+                </React.Fragment>
             )
         }
     }
@@ -104,10 +106,7 @@ function About() {
     return(
         <section className="about">
             {console.log(data)}
-            {renderAboutHero(data)}
-            {renderAboutApproach(data)}
-            {renderAboutExperience(data)}
-            <InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/>
+            {renderPage(data)}
         </section>
     );
 }
