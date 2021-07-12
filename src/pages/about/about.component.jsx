@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import InstagramFeed  from 'react-ig-feed'
 
 //Imported Components 
 import Loader from '../../components/utilities/loader.component';
 import './about.styles.scss';
 
-const {REACT_APP_API_URL} = process.env;
+const {REACT_APP_API_URL, REACT_APP_INSTA_TOKEN} = process.env;
 
 const authAxios = axios
     .create({
@@ -106,6 +107,7 @@ function About() {
             {renderAboutHero(data)}
             {renderAboutApproach(data)}
             {renderAboutExperience(data)}
+            <InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/>
         </section>
     );
 }

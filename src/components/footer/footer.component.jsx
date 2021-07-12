@@ -3,7 +3,7 @@ import './footer.styles.scss';
 
 const Footer = props => {
     return(
-        <footer role="region">
+        <footer>
             <p>this is the footer</p>
         </footer>
     );
