@@ -27,12 +27,37 @@ function About() {
         }
         else {
 
+            const sectionTitle = () => { return{ __html: apiData.title.rendered } };
             const sectionLead = () => { return{ __html: apiData.acf.section_lead.content } };
 
-            return (
+            //Approach Section
+            const approachLead = () => { return{ __html: apiData.acf.approach_section.headline } };
+            const approachDiscover = () => { return{ __html: apiData.acf.approach_section.approach_items[0].content } };
+            const approachCreate = () => { return{ __html: apiData.acf.approach_section.approach_items[1].content } };
+            const approachSupport = () => { return{ __html: apiData.acf.approach_section.approach_items[2].content } };
 
+            //Experience Section
+            const expLead = () => { return{ __html: apiData.acf.experience_section.headline } };
+            const expCreative = () => { return{ __html: apiData.acf.experience_section.experience_items[0].content } };
+            const expProduct = () => { return{ __html: apiData.acf.experience_section.experience_items[1].content } };
+            const expDev = () => { return{ __html: apiData.acf.experience_section.experience_items[2].content } };
+            const expMarketing = () => { return{ __html: apiData.acf.experience_section.experience_items[3].content } };
+
+            return (
                 <div>
+                    <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
                     <div dangerouslySetInnerHTML={sectionLead()}></div>
+
+                    <div dangerouslySetInnerHTML={approachLead()}></div>
+                    <div dangerouslySetInnerHTML={approachDiscover()}></div>
+                    <div dangerouslySetInnerHTML={approachCreate()}></div>
+                    <div dangerouslySetInnerHTML={approachSupport()}></div>
+
+                    <div dangerouslySetInnerHTML={expLead()}></div>
+                    <div dangerouslySetInnerHTML={expCreative()}></div>
+                    <div dangerouslySetInnerHTML={expProduct()}></div>
+                    <div dangerouslySetInnerHTML={expDev()}></div>
+                    <div dangerouslySetInnerHTML={expMarketing()}></div>
                 </div>
             );
         }

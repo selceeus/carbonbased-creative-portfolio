@@ -33,7 +33,6 @@ function Home() {
             const howSection = () => { return{ __html: apiData.acf.how_section.content } };
 
             return (
-
                 <div>
                     <div dangerouslySetInnerHTML={siteLead()}></div>
                     <div dangerouslySetInnerHTML={whySection()}></div>
