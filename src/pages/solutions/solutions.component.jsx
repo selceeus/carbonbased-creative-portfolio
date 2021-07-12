@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import dompurify from 'dompurify';
 
 //Imported Components
 import Loader from '../../components/utilities/loader.component';
@@ -19,11 +20,12 @@ function Solutions() {
 
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
+    const sanitize = dompurify.sanitize;
 
     const renderSolutionsHero = apiData => {
 
-        const sectionTitle = () => { return{ __html: apiData.title.rendered } };
-        const sectionLead = () => { return{ __html: apiData.acf.section_lead.content } };
+        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
+        const sectionLead = () => { return{ __html: sanitize(apiData.acf.section_lead.content) } };
 
         return (
             <div className="hero">
@@ -35,10 +37,10 @@ function Solutions() {
 
     const renderSolutionsServices = apiData => {
 
-        const servicesTitle = () => { return{ __html: apiData.acf.services_section.headline } };
-        const servicesDev = () => { return{ __html: apiData.acf.services_section.services_item[0].content } };
-        const servicesCreative = () => { return{ __html: apiData.acf.services_section.services_item[1].content } };
-        const servicesDigi = () => { return{ __html: apiData.acf.services_section.services_item[2].content } };
+        const servicesTitle = () => { return{ __html: sanitize(apiData.acf.services_section.headline) } };
+        const servicesDev = () => { return{ __html: sanitize(apiData.acf.services_section.services_item[0].content) } };
+        const servicesCreative = () => { return{ __html: sanitize(apiData.acf.services_section.services_item[1].content) } };
+        const servicesDigi = () => { return{ __html: sanitize(apiData.acf.services_section.services_item[2].content) } };
 
         return (
             <div className="services">
@@ -52,7 +54,7 @@ function Solutions() {
 
     const renderSolutionsProducts = apiData => {
 
-        const productsTitle = () => { return{ __html: apiData.acf.product_section.headline } };
+        const productsTitle = () => { return{ __html: sanitize(apiData.acf.product_section.headline) } };
         const productsItems = apiData.acf.product_section.product_items.map( (item, index) =>
             <li key={index}>
                 <h4>{item.title}</h4>

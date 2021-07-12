@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import dompurify from 'dompurify';
 
 //Imported Components 
 import Loader from '../../components/utilities/loader.component';
@@ -19,10 +20,11 @@ function Home() {
 
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
+    const sanitize = dompurify.sanitize;
 
     const renderHomeHero = apiData => {
 
-        const siteLead = () => { return{ __html: apiData.acf.site_lead.content } };
+        const siteLead = () => { return{ __html: sanitize(apiData.acf.site_lead.content) } };
 
         return (
             <div className="hero">
@@ -33,7 +35,7 @@ function Home() {
 
     const renderHomeWhy = apiData => {
 
-        const whySection = () => { return{ __html: apiData.acf.why_section.content } };
+        const whySection = () => { return{ __html: sanitize(apiData.acf.why_section.content) } };
 
         return (
             <div className="why">
@@ -44,7 +46,7 @@ function Home() {
 
     const renderHomeWhat = apiData => {
 
-        const whatSection = () => { return{ __html: apiData.acf.what_section.content } };
+        const whatSection = () => { return{ __html: sanitize(apiData.acf.what_section.content) } };
 
         return (
             <div className="what">
@@ -55,7 +57,7 @@ function Home() {
 
     const renderHomeHow = apiData => {
 
-        const howSection = () => { return{ __html: apiData.acf.how_section.content } };
+        const howSection = () => { return{ __html: sanitize(apiData.acf.how_section.content) } };
 
         return (
             <div className="how">

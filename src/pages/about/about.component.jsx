@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import dompurify from 'dompurify';
 import InstagramFeed  from 'react-ig-feed'
 
 //Imported Components 
@@ -20,12 +21,13 @@ function About() {
 
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
+    const sanitize = dompurify.sanitize;
 
     const renderAboutHero = apiData => {
 
         //Hero Section
-        const sectionTitle = () => { return{ __html: apiData.title.rendered } };
-        const sectionLead = () => { return{ __html: apiData.acf.section_lead.content } };
+        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
+        const sectionLead = () => { return{ __html: sanitize(apiData.acf.section_lead.content) } };
 
         return (
             <div className="hero">
@@ -38,10 +40,10 @@ function About() {
     const renderAboutApproach = apiData => {
 
         //Approach Section
-        const approachLead = () => { return{ __html: apiData.acf.approach_section.headline } };
-        const approachDiscover = () => { return{ __html: apiData.acf.approach_section.approach_items[0].content } };
-        const approachCreate = () => { return{ __html: apiData.acf.approach_section.approach_items[1].content } };
-        const approachSupport = () => { return{ __html: apiData.acf.approach_section.approach_items[2].content } };
+        const approachLead = () => { return{ __html: sanitize(apiData.acf.approach_section.headline) } };
+        const approachDiscover = () => { return{ __html: sanitize(apiData.acf.approach_section.approach_items[0].content) } };
+        const approachCreate = () => { return{ __html: sanitize(apiData.acf.approach_section.approach_items[1].content) } };
+        const approachSupport = () => { return{ __html: sanitize(apiData.acf.approach_section.approach_items[2].content) } };
 
         return(
             <div className="approach">
@@ -56,11 +58,11 @@ function About() {
     const renderAboutExperience = apiData => {
 
         //Experience Section
-        const expLead = () => { return{ __html: apiData.acf.experience_section.headline } };
-        const expCreative = () => { return{ __html: apiData.acf.experience_section.experience_items[0].content } };
-        const expProduct = () => { return{ __html: apiData.acf.experience_section.experience_items[1].content } };
-        const expDev = () => { return{ __html: apiData.acf.experience_section.experience_items[2].content } };
-        const expMarketing = () => { return{ __html: apiData.acf.experience_section.experience_items[3].content } };
+        const expLead = () => { return{ __html: sanitize(apiData.acf.experience_section.headline) } };
+        const expCreative = () => { return{ __html: sanitize(apiData.acf.experience_section.experience_items[0].content) } };
+        const expProduct = () => { return{ __html: sanitize(apiData.acf.experience_section.experience_items[1].content) } };
+        const expDev = () => { return{ __html: sanitize(apiData.acf.experience_section.experience_items[2].content) } };
+        const expMarketing = () => { return{ __html: sanitize(apiData.acf.experience_section.experience_items[3].content) } };
 
         return(
             <div className="experience">
