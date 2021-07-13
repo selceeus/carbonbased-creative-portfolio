@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import dompurify from 'dompurify';
 import parse from 'html-react-parser';
 
@@ -43,11 +44,20 @@ function Work() {
             }
                 {parse(item.title.rendered)}
                 {parse(item.content.rendered)}
+                <Link to={{
+                    pathname: `/work/${item.slug}`,
+                    state: { 
+                        path: item.slug,
+                        name: 'test'
+                    }
+                }}>
+                    See Details
+                </Link>
             </li>
         );
 
         return (
-            <div className="products">
+            <div className="work-projects">
                 <ul>{workItems}</ul>
             </div>
         );

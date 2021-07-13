@@ -4,7 +4,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    NavLink
   } from "react-router-dom";
 //import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -14,6 +14,7 @@ import Home from './pages/home/home.component';
 import About from './pages/about/about.component';
 import Solutions from './pages/solutions/solutions.component';
 import Work from './pages/work/work.component';
+import DetailedWork from './pages/detailed-work/detailed-work.component';
 import Journal from './pages/journal/journal.component';
 import DetailedJournal from './pages/detailed-journal/detailed-journal.component';
 import Contact from './pages/contact/contact.component';
@@ -55,22 +56,22 @@ function App() {
                         <nav>
                             <ul>
                                 <li>
-                                    <Link to="/">Home</Link>
+                                    <NavLink to="/">Home</NavLink>
                                 </li>
                                 <li>
-                                    <Link to="/about">About</Link>
+                                    <NavLink to="/about">About</NavLink>
                                 </li>
                                 <li>
-                                    <Link to="/solutions">Solutions</Link>
+                                    <NavLink to="/solutions">Solutions</NavLink>
                                 </li>
                                 <li>
-                                    <Link to="/work">Work</Link>
+                                    <NavLink to="/work">Work</NavLink>
                                 </li>
                                 <li>
-                                    <Link to="/journal">Journal</Link>
+                                    <NavLink to="/journal">Journal</NavLink>
                                 </li>
                                 <li>
-                                    <Link to="/contact">Contact</Link>
+                                    <NavLink to="/contact">Contact</NavLink>
                                 </li>
                             </ul>
                         </nav>
@@ -86,15 +87,14 @@ function App() {
                         <Route path="/solutions">
                             <Solutions />
                         </Route>
-                        <Route path="/work">
+                        <Route exact path="/work">
                             <Work />
                         </Route>
-                        <Route path="/journal">
+                        <Route path="/work/:slug" component={DetailedWork}></Route>
+                        <Route exact path="/journal">
                             <Journal />
                         </Route>
-                        <Route path="/journal/:journalId">
-                            <DetailedJournal />
-                        </Route>
+                        <Route path="/journal/:slug" component={DetailedJournal}></Route>
                         <Route path="/contact">
                             <Contact />
                         </Route>
