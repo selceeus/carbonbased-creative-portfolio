@@ -47,11 +47,11 @@ function Work() {
                 <Link to={{
                     pathname: `/work/${item.slug}`,
                     state: { 
-                        path: item.slug,
-                        name: 'test'
+                        id: item.id,
+                        path: item.slug
                     }
                 }}>
-                    See Details
+                    See Project Details
                 </Link>
             </li>
         );
@@ -80,7 +80,6 @@ function Work() {
 
     useEffect(() => {
         const fetchPageData = async () => {
-
             const [pageResult, postResult] = await Promise.all([
                 authAxios.get(`${REACT_APP_API_URL}wp-json/wp/v2/pages/10`),
                 authAxios.get(`${REACT_APP_API_URL}wp-json/wp/v2/project`)
@@ -95,6 +94,7 @@ function Work() {
             });
 
         };
+
         fetchPageData();
     }, []);
 
