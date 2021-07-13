@@ -19,28 +19,53 @@ const authAxios = axios
 
 function Work() {
 
-    const [data, setData] = useState({page: null, post: null});
+    const [data, setData] = useState({ page: [], post: [] });
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
     const renderWorkHero = apiData => {
 
-        const sectionTitle = () => { return{ __html: apiData.title.rendered } };
+        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
 
         return (
             <div className="hero">
-               <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
+                <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
             </div>
         );
     }
 
-    const renderPage = apiData => {
+    const renderWorkProjects = apiData => {
 
-        return(
-            <React.Fragment>
-                {renderWorkHero(apiData)}
-            </React.Fragment>
-        )
+        let workItems = apiData.map((item, index) =>
+            <li key={index}>
+            {item.acf.projects_section !== null &&
+                <img src={parse(item.acf.projects_section.project_hero_image)} alt=""></img>
+            }
+                {parse(item.title.rendered)}
+                {parse(item.content.rendered)}
+            </li>
+        );
+
+        return (
+            <div className="products">
+                <ul>{workItems}</ul>
+            </div>
+        );
+    }
+
+    const renderPage = (apiData, apiPostData) => {
+
+        if(!Object.keys(apiData).length > 0) {
+            return <Loader />;
+        }
+        else {
+            return(
+                <React.Fragment>
+                    {renderWorkHero(apiData)}
+                    {renderWorkProjects(apiPostData)}
+                </React.Fragment>
+            )
+        }
     }
 
     useEffect(() => {
@@ -49,7 +74,10 @@ function Work() {
             const [pageResult, postResult] = await Promise.all([
                 authAxios.get(`${REACT_APP_API_URL}wp-json/wp/v2/pages/10`),
                 authAxios.get(`${REACT_APP_API_URL}wp-json/wp/v2/project`)
-            ]);
+            ])
+            .catch(function(err) {
+                console.log(setRequestError(err));
+            });
 
             setData({
                 page: pageResult.data, 
@@ -65,7 +93,7 @@ function Work() {
     return(
         <section className="work">
             {console.log(postData)}
-            {console.log(pageData)}
+            {renderPage(pageData, postData)}
         </section>
     );
 }
