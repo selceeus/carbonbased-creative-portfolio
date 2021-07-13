@@ -20,17 +20,54 @@ const authAxios = axios
 
 function DetailedWork() {
 
-    const { state } = useLocation();
+    const {projectParams} = useLocation();
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
+    const renderWorkProjectHero = apiData => {
+
+        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
+
+        return (
+            <div className="hero">
+                <h2 dangerouslySetInnerHTML={sectionTitle()}></h2>
+            </div>
+        );
+    }
+
+    const renderWorkProjectContent = apiData => {
+
+        const sectionContent = () => { return{ __html: sanitize(apiData.content.rendered) } };
+
+        return (
+            <div className="hero">
+                <div dangerouslySetInnerHTML={sectionContent()}></div>
+            </div>
+        );
+    }
+
+    const renderPage = apiData => {
+
+        if(!Object.keys(apiData).length > 0) {
+            return <Loader />;
+        }
+        else {
+            return(
+                <React.Fragment>
+                    <h1>Work</h1>
+                    {renderWorkProjectHero(apiData)}
+                    {renderWorkProjectContent(apiData)}
+                </React.Fragment>
+            )
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const result = await authAxios
-                    .get( `${REACT_APP_API_URL}wp-json/wp/v2/project/${state.id}` )
+                    .get( `${REACT_APP_API_URL}wp-json/wp/v2/project/${projectParams.id}` )
                     .then( result => setData(result.data) );
             } catch(err) {
                 setRequestError(err.message);
@@ -42,7 +79,7 @@ function DetailedWork() {
     return(
         <section className='detailed-work'>
             {console.log(data)}
-            <h1>Detailed Work</h1>
+            {renderPage(data)}
         </section>
     );
 

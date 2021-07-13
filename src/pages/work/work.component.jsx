@@ -40,13 +40,13 @@ function Work() {
         let workItems = apiData.map((item, index) =>
             <li key={index}>
             {item.acf.projects_section !== null &&
-                <img src={parse(item.acf.projects_section.project_hero_image)} alt=""></img>
+                <img src={parse(item.acf.projects_section.project_hero_image)} alt="" loading="lazy"></img>
             }
-                {parse(item.title.rendered)}
-                {parse(item.content.rendered)}
+                <h3>{parse(item.title.rendered)}</h3>
+                {parse(item.excerpt.rendered)}
                 <Link to={{
                     pathname: `/work/${item.slug}`,
-                    state: { 
+                    projectParams: { 
                         id: item.id,
                         path: item.slug
                     }
@@ -94,7 +94,6 @@ function Work() {
             });
 
         };
-
         fetchPageData();
     }, []);
 
