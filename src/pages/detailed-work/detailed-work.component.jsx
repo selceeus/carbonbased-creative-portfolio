@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import dompurify from 'dompurify';
 import parse from 'html-react-parser';
 
@@ -21,13 +21,17 @@ const authAxios = axios
 function DetailedWork() {
 
     const {projectParams} = useLocation();
+    const directAccessParams = useParams();
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
+    
+    console.log(directAccessParams.slug);
+
     const renderWorkProjectHero = apiData => {
 
-        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
+        const sectionTitle = () => { return{ __html: sanitize(apiData[0].title.rendered) } };
 
         return (
             <div className="hero">
@@ -38,7 +42,7 @@ function DetailedWork() {
 
     const renderWorkProjectContent = apiData => {
 
-        const sectionContent = () => { return{ __html: sanitize(apiData.content.rendered) } };
+        const sectionContent = () => { return{ __html: sanitize(apiData[0].content.rendered) } };
 
         return (
             <div className="hero">
@@ -67,7 +71,7 @@ function DetailedWork() {
         const fetchData = async () => {
             try {
                 const result = await authAxios
-                    .get( `${REACT_APP_API_URL}wp-json/wp/v2/project/${projectParams.id}` )
+                    .get( `${REACT_APP_API_URL}wp-json/wp/v2/project/?slug=${directAccessParams.slug}` )
                     .then( result => setData(result.data) );
             } catch(err) {
                 setRequestError(err.message);
