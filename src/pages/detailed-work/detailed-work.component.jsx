@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import dompurify from 'dompurify';
 import parse from 'html-react-parser';
 
@@ -20,14 +20,11 @@ const authAxios = axios
 
 function DetailedWork() {
 
-    const {projectParams} = useLocation();
+    //const {projectParams} = useLocation();
     const directAccessParams = useParams();
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
-
-    
-    console.log(directAccessParams.slug);
 
     const renderWorkProjectHero = apiData => {
 

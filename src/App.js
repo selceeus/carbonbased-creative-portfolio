@@ -7,6 +7,7 @@ import {
     NavLink
   } from "react-router-dom";
 //import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { AnimatePresence, motion } from "framer-motion";
 
 //Imported Components 
 import Header from './components/header/header.component';
@@ -77,28 +78,30 @@ function App() {
                         </nav>
                     </section>
 
-                    <Switch>
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
-                        <Route path="/about">
-                            <About />
-                        </Route>
-                        <Route path="/solutions">
-                            <Solutions />
-                        </Route>
-                        <Route exact path="/work">
-                            <Work />
-                        </Route>
-                        <Route path="/work/:slug" component={DetailedWork}></Route>
-                        <Route exact path="/journal">
-                            <Journal />
-                        </Route>
-                        <Route path="/journal/:slug" component={DetailedJournal}></Route>
-                        <Route path="/contact">
-                            <Contact />
-                        </Route>
-                    </Switch>
+                    <AnimatePresence exitBeforeEnter>
+                        <Switch>
+                            <Route exact path="/">
+                                <Home />
+                            </Route>
+                            <Route path="/about">
+                                <About />
+                            </Route>
+                            <Route path="/solutions">
+                                <Solutions />
+                            </Route>
+                            <Route exact path="/work">
+                                <Work />
+                            </Route>
+                            <Route path="/work/:slug" component={DetailedWork}></Route>
+                            <Route exact path="/journal">
+                                <Journal />
+                            </Route>
+                            <Route path="/journal/:slug" component={DetailedJournal}></Route>
+                            <Route path="/contact">
+                                <Contact />
+                            </Route>
+                        </Switch>
+                    </AnimatePresence>
 
                 </Router>
 

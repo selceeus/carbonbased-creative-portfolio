@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import dompurify from 'dompurify';
+import { motion } from 'framer-motion';
 
 //Imported Components 
 import Loader from '../../components/utilities/loader.component';
@@ -16,7 +17,7 @@ const authAxios = axios
         }
 });
 
-function Home() {
+const Home = props => {
 
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
@@ -97,10 +98,16 @@ function Home() {
     }, []);
 
     return(
-        <section className="home">
-            {console.log(data)}
-            {renderPage(data)}
-        </section>
+        <motion.div
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <section className="home">
+                {console.log(data)}
+                {renderPage(data)}
+            </section>
+        </motion.div>
     );
 }
 
