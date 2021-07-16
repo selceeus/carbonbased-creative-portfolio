@@ -24,7 +24,7 @@ const Journal = props => {
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
-    const renderWorkHero = apiData => {
+    const renderJournalHero = apiData => {
 
         const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
 
@@ -35,12 +35,12 @@ const Journal = props => {
         );
     }
 
-    const renderWorkProjects = apiData => {
+    const renderJournalEntries = apiData => {
 
         let workItems = apiData.map((item, index) =>
             <li key={index}>
             {item.acf.projects_section !== null &&
-                <img src={parse(item.acf.projects_section.project_hero_image)} alt="" loading="lazy"></img>
+                <img src="test" alt="" loading="lazy"></img>
             }
                 <h3>{parse(item.title.rendered)}</h3>
                 {parse(item.excerpt.rendered)}
@@ -71,8 +71,8 @@ const Journal = props => {
         else {
             return(
                 <React.Fragment>
-                    {renderWorkHero(apiData)}
-                    {renderWorkProjects(apiPostData)}
+                    {renderJournalHero(apiData)}
+                    {renderJournalEntries(apiPostData)}
                 </React.Fragment>
             )
         }
@@ -81,8 +81,8 @@ const Journal = props => {
     useEffect(() => {
         const fetchPageData = async () => {
             const [pageResult, postResult] = await Promise.all([
-                authAxios.get(`${REACT_APP_API_URL}wp-json/wp/v2/pages/10`),
-                authAxios.get(`${REACT_APP_API_URL}wp-json/wp/v2/project`)
+                authAxios.get(`${REACT_APP_API_URL}wp-json/wp/v2/pages/12`),
+                authAxios.get(`${REACT_APP_API_URL}wp-json/wp/v2/posts`)
             ])
             .catch(function(err) {
                 console.log(setRequestError(err));
