@@ -45,13 +45,13 @@ const Journal = props => {
                 <h3>{parse(item.title.rendered)}</h3>
                 {parse(item.excerpt.rendered)}
                 <Link to={{
-                    pathname: `/work/${item.slug}`,
+                    pathname: `/journal/${item.slug}`,
                     projectParams: { 
                         id: item.id,
                         path: item.slug
                     }
                 }}>
-                    See Project Details
+                    Read More
                 </Link>
             </li>
         );
