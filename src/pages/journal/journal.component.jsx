@@ -37,7 +37,7 @@ const Journal = props => {
 
     const renderJournalEntries = apiData => {
 
-        let workItems = apiData.map((item, index) =>
+        let journalItems = apiData.map((item, index) =>
             <li key={index}>
                 <h3>{parse(item.title.rendered)}</h3>
                 {parse(item.excerpt.rendered)}
@@ -55,7 +55,7 @@ const Journal = props => {
 
         return (
             <div className="work-projects">
-                <ul>{workItems}</ul>
+                <ul>{journalItems}</ul>
             </div>
         );
     }

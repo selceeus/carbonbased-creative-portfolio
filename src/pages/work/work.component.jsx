@@ -30,7 +30,7 @@ function Work() {
 
         return (
             <div className="hero">
-                <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
+                {apiData.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
             </div>
         );
     }
@@ -39,7 +39,7 @@ function Work() {
 
         let workItems = apiData.map((item, index) =>
             <li key={index}>
-            {item.acf.projects_section !== null &&
+            {item.acf.projects_section &&
                 <img src={parse(item.acf.projects_section.project_hero_image)} alt="" loading="lazy"></img>
             }
                 <h3>{parse(item.title.rendered)}</h3>
@@ -58,7 +58,7 @@ function Work() {
 
         return (
             <div className="work-projects">
-                <ul>{workItems}</ul>
+                 <ul>{workItems}</ul>
             </div>
         );
     }

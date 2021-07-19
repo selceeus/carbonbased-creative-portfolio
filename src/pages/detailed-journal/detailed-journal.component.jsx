@@ -31,7 +31,7 @@ function DetailedJournal() {
 
         return (
             <div className="hero">
-                <h2 dangerouslySetInnerHTML={sectionTitle()}></h2>
+                {apiData[0].title.rendered && <h2 dangerouslySetInnerHTML={sectionTitle()}></h2>}
             </div>
         );
     }
@@ -42,7 +42,7 @@ function DetailedJournal() {
 
         return (
             <div className="hero">
-                <div dangerouslySetInnerHTML={sectionContent()}></div>
+                {apiData[0].content.rendered && <div dangerouslySetInnerHTML={sectionContent()}></div>}
             </div>
         );
     }

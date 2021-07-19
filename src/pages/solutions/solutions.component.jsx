@@ -30,8 +30,8 @@ function Solutions() {
 
         return (
             <div className="hero">
-                <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
-                <div dangerouslySetInnerHTML={sectionLead()}></div>
+                {apiData.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
+                {apiData.acf.section_lead.content && <div dangerouslySetInnerHTML={sectionLead()}></div>}
             </div>
         );
     }
@@ -45,10 +45,10 @@ function Solutions() {
 
         return (
             <div className="services">
-                <h1 dangerouslySetInnerHTML={servicesTitle()}></h1>
-                <div dangerouslySetInnerHTML={servicesDev()}></div>
-                <div dangerouslySetInnerHTML={servicesCreative()}></div>
-                <div dangerouslySetInnerHTML={servicesDigi()}></div>
+                {apiData.acf.services_section.headline && <h1 dangerouslySetInnerHTML={servicesTitle()}></h1>}
+                {apiData.acf.services_section.services_item[0].content && <div dangerouslySetInnerHTML={servicesDev()}></div>}
+                {apiData.acf.services_section.services_item[1].content && <div dangerouslySetInnerHTML={servicesCreative()}></div>}
+                {apiData.acf.services_section.services_item[2].content && <div dangerouslySetInnerHTML={servicesDigi()}></div>}
             </div>
         );
     }
@@ -65,8 +65,8 @@ function Solutions() {
 
         return (
             <div className="products">
-                <h1 dangerouslySetInnerHTML={productsTitle()}></h1>
-                <ul>{productsItems}</ul>
+                {apiData.acf.product_section.headline && <h1 dangerouslySetInnerHTML={productsTitle()}></h1>}
+                {apiData.acf.product_section.product_items && <ul>{productsItems}</ul>}
             </div>
         );
     }
@@ -79,9 +79,9 @@ function Solutions() {
         else {
             return(
                 <React.Fragment>
-                    {renderSolutionsHero(data)}
-                    {renderSolutionsServices(data)}
-                    {renderSolutionsProducts(data)}
+                    {renderSolutionsHero(apiData)}
+                    {renderSolutionsServices(apiData)}
+                    {renderSolutionsProducts(apiData)}
                 </React.Fragment>
             )
         }

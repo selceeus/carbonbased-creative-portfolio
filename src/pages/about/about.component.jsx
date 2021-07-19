@@ -31,8 +31,8 @@ function About() {
 
         return (
             <div className="hero">
-                <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>
-                <div dangerouslySetInnerHTML={sectionLead()}></div>
+            {apiData.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
+            {apiData.acf.section_lead.content && <div dangerouslySetInnerHTML={sectionLead()}></div>}
             </div>
         );
     }
@@ -47,10 +47,10 @@ function About() {
 
         return(
             <div className="approach">
-                <div dangerouslySetInnerHTML={approachLead()}></div>
-                <div dangerouslySetInnerHTML={approachDiscover()}></div>
-                <div dangerouslySetInnerHTML={approachCreate()}></div>
-                <div dangerouslySetInnerHTML={approachSupport()}></div>
+                {apiData.acf.approach_section.headline && <div dangerouslySetInnerHTML={approachLead()}></div>}
+                {apiData.acf.approach_section.approach_items[0].content && <div dangerouslySetInnerHTML={approachDiscover()}></div>}
+                {apiData.acf.approach_section.approach_items[1].content && <div dangerouslySetInnerHTML={approachCreate()}></div>}
+                {apiData.acf.approach_section.approach_items[2].content && <div dangerouslySetInnerHTML={approachSupport()}></div>}
             </div>
         )
     }
@@ -66,11 +66,11 @@ function About() {
 
         return(
             <div className="experience">
-                <div dangerouslySetInnerHTML={expLead()}></div>
-                <div dangerouslySetInnerHTML={expCreative()}></div>
-                <div dangerouslySetInnerHTML={expProduct()}></div>
-                <div dangerouslySetInnerHTML={expDev()}></div>
-                <div dangerouslySetInnerHTML={expMarketing()}></div>
+                {apiData.acf.experience_section.headline && <div dangerouslySetInnerHTML={expLead()}></div>}
+                {apiData.acf.experience_section.experience_items[0].content && <div dangerouslySetInnerHTML={expCreative()}></div>}
+                {apiData.acf.experience_section.experience_items[1].content && <div dangerouslySetInnerHTML={expProduct()}></div>}
+                {apiData.acf.experience_section.experience_items[2].content && <div dangerouslySetInnerHTML={expDev()}></div>}
+                {apiData.acf.experience_section.experience_items[3].content && <div dangerouslySetInnerHTML={expMarketing()}></div>}
             </div>
         )
     }
