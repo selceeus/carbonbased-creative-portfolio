@@ -29,7 +29,9 @@ const Home = props => {
 
         return (
             <div className="hero">
+            {apiData.acf.site_lead.content !== null &&
                 <div dangerouslySetInnerHTML={siteLead()}></div>
+            }
             </div>
         );
     }
@@ -40,7 +42,9 @@ const Home = props => {
 
         return (
             <div className="why">
+            {apiData.acf.why_section.content !== null &&
                 <div dangerouslySetInnerHTML={whySection()}></div>
+            }
             </div>
         );
     }
@@ -51,7 +55,9 @@ const Home = props => {
 
         return (
             <div className="what">
+            {apiData.acf.what_section.content !== null &&
                 <div dangerouslySetInnerHTML={whatSection()}></div>
+            }
             </div>
         );
     }
@@ -62,7 +68,9 @@ const Home = props => {
 
         return (
             <div className="how">
+            {apiData.acf.how_section.content !== null &&
                 <div dangerouslySetInnerHTML={howSection()}></div>
+            }
             </div>
         );
     }

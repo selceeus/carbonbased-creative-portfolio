@@ -39,9 +39,6 @@ const Journal = props => {
 
         let workItems = apiData.map((item, index) =>
             <li key={index}>
-            {item.acf.projects_section !== null &&
-                <img src="test" alt="" loading="lazy"></img>
-            }
                 <h3>{parse(item.title.rendered)}</h3>
                 {parse(item.excerpt.rendered)}
                 <Link to={{
