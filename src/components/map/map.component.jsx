@@ -73,6 +73,9 @@ function Map() {
             >
                 <Layer {...building3d} />
                 <NavigationControl style={navStyle} />
+                <Marker latitude={38.8314} longitude={-104.8083} offsetLeft={-20} offsetTop={-10}>
+                    <div>You are here</div>
+                </Marker>
 
             </MapGL>
         </section>
