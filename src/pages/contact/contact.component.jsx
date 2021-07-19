@@ -58,6 +58,7 @@ function Contact() {
                     <input
                         defaultValue={intialValues.firstName}
                         placeholder="First Name"
+                        type="text"
                         {...register("firstName", { required: true, maxLength: 20, validate: (value) => value.length > 3 })}
                     />
                     {errors.firstName && <p>Your first name is less than 3 characters</p>}
@@ -66,6 +67,7 @@ function Contact() {
                     <input
                         defaultValue={intialValues.lastName}
                         placeholder="Last Name"
+                        type="text"
                         {...register("lastName", { required: true, maxLength: 20, validate: (value) => value.length > 3 })}
                     />
                     {errors.lastName && <p>Your last name is less than 3 characters</p>}
@@ -83,7 +85,10 @@ function Contact() {
                         placeholder="Message"
                         {...register("message")}
                     />
-                    <input type="submit" />
+                    <input
+                        value="Send Message"
+                        type="submit"  
+                    />
                 </form>
             </div>
         );
