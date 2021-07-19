@@ -20,7 +20,6 @@ const authAxios = axios
 
 function DetailedWork() {
 
-    //const {projectParams} = useLocation();
     const directAccessParams = useParams();
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
