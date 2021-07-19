@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 //Imported Components 
 import Loader from '../../components/utilities/loader.component';
+import Map from '../../components/map/map.component';
 import './contact.styles.scss';
 
 const {REACT_APP_API_URL} = process.env;
@@ -25,11 +26,11 @@ function Contact() {
 
     const renderContactHero = apiData => {
 
-        const siteLead = () => { return{ __html: sanitize(apiData.acf.site_lead.content) } };
+        const siteLead = () => { return{ __html: sanitize(apiData.title.rendered) } };
 
         return (
             <div className="hero">
-            {apiData.acf.site_lead.content && <div dangerouslySetInnerHTML={siteLead()}></div>}
+            {apiData.title.rendered && <div dangerouslySetInnerHTML={siteLead()}></div>}
             </div>
         );
     }
@@ -76,6 +77,7 @@ function Contact() {
             return(
                 <React.Fragment>
                     {renderContactHero(apiData)}
+                    <Map />
                 </React.Fragment>
             )
         }
@@ -99,8 +101,8 @@ function Contact() {
 
     return(
         <section className="contact">
-            <h1>Contact</h1>
             {console.log(data)}
+            {renderPage(data)}
         </section>
     );
 }
