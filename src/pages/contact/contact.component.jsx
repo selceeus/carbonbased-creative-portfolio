@@ -31,16 +31,6 @@ function Contact() {
 
         alert(JSON.stringify(data));
 
-        const postData = async (data) => {
-            console.log("submitted");
-            await authAxios.post(`${REACT_APP_API_URL}${REACT_APP_GRAVITY_URL}`, data)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        };
     };
     
     const intialValues = {
