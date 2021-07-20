@@ -9,7 +9,7 @@ import Loader from '../../components/utilities/loader.component';
 import Map from '../../components/map/map.component';
 import './contact.styles.scss';
 
-const {REACT_APP_API_URL} = process.env;
+const {REACT_APP_API_URL, REACT_APP_GRAVITY_URL } = process.env;
 
 const authAxios = axios
     .create({
@@ -28,7 +28,19 @@ function Contact() {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
+
         alert(JSON.stringify(data));
+
+        const postData = async (data) => {
+            console.log("submitted");
+            await authAxios.post(`${REACT_APP_API_URL}${REACT_APP_GRAVITY_URL}`, data)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        };
     };
     
     const intialValues = {
@@ -126,7 +138,7 @@ function Contact() {
                 <React.Fragment>
                     {renderContactHero(apiData)}
                     {renderContactForm()}
-                    <Map />
+                    {/* <Map /> */}
                 </React.Fragment>
             )
         }
@@ -150,7 +162,6 @@ function Contact() {
 
     return(
         <section className="contact">
-            {console.log(data)}
             {renderPage(data)}
         </section>
     );

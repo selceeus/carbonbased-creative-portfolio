@@ -32,10 +32,6 @@ function Map() {
         'minzoom': 15,
         'paint': {
             'fill-extrusion-color': '#aaa',
-            
-            // Use an 'interpolate' expression to
-            // add a smooth transition effect to
-            // the buildings as the user zooms in.
             'fill-extrusion-height': [
                 'interpolate',
                 ['linear'],
@@ -54,7 +50,7 @@ function Map() {
                 15.05,
                 ['get', 'min_height']
             ],
-            'fill-extrusion-opacity': 0.6
+            'fill-extrusion-opacity': 0.9
         }
     });
 
