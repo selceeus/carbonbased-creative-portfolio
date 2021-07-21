@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x:hidden;
+  }
+  
+  /* Typography */
+  
+  h1 {
+      font-size: 5rem;
+  }
+  h2 {
+      font-size: 3.5rem;
+  }
+  h3 {
+      font-size: 2.25rem;
+  }
+  
+  /* Import Bootstrap */
+  @import '~bootstrap/dist/css/bootstrap.css';
