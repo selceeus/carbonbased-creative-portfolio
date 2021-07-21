@@ -23,62 +23,62 @@ const Home = props => {
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
-    const renderHomeHero = apiData => {
+    const renderHomeHero = props => {
 
-        const siteLead = () => { return{ __html: sanitize(apiData.acf.site_lead.content) } };
+        const siteLead = () => { return{ __html: sanitize(props.acf.site_lead.content) } };
 
         return (
             <div className="hero">
-            {apiData.acf.site_lead.content && <div dangerouslySetInnerHTML={siteLead()}></div>}
+            {props.acf.site_lead.content && <div dangerouslySetInnerHTML={siteLead()}></div>}
             </div>
         );
     }
 
-    const renderHomeWhy = apiData => {
+    const renderHomeWhy = props => {
 
-        const whySection = () => { return{ __html: sanitize(apiData.acf.why_section.content) } };
+        const whySection = () => { return{ __html: sanitize(props.acf.why_section.content) } };
 
         return (
             <div className="why">
-            {apiData.acf.why_section.content && <div dangerouslySetInnerHTML={whySection()}></div>}
+            {props.acf.why_section.content && <div dangerouslySetInnerHTML={whySection()}></div>}
             </div>
         );
     }
 
-    const renderHomeWhat = apiData => {
+    const renderHomeWhat = props => {
 
-        const whatSection = () => { return{ __html: sanitize(apiData.acf.what_section.content) } };
+        const whatSection = () => { return{ __html: sanitize(props.acf.what_section.content) } };
 
         return (
             <div className="what">
-            {apiData.acf.what_section.content && <div dangerouslySetInnerHTML={whatSection()}></div>}
+            {props.acf.what_section.content && <div dangerouslySetInnerHTML={whatSection()}></div>}
             </div>
         );
     }
 
-    const renderHomeHow = apiData => {
+    const renderHomeHow = props => {
 
-        const howSection = () => { return{ __html: sanitize(apiData.acf.how_section.content) } };
+        const howSection = () => { return{ __html: sanitize(props.acf.how_section.content) } };
 
         return (
             <div className="how">
-            {apiData.acf.how_section.content && <div dangerouslySetInnerHTML={howSection()}></div>}
+            {props.acf.how_section.content && <div dangerouslySetInnerHTML={howSection()}></div>}
             </div>
         );
     }
 
-    const renderPage = apiData => {
+    const renderPage = props => {
 
-        if(!Object.keys(apiData).length > 0) {
+        if(!Object.keys(props).length > 0) {
             return <Loader />;
         }
         else {
             return(
                 <React.Fragment>
-                    {renderHomeHero(apiData)}
-                    {renderHomeWhy(apiData)}
-                    {renderHomeWhat(apiData)}
-                    {renderHomeHow(apiData)}
+                    {renderHomeHero(props)}
+                    {renderHomeWhy(props)}
+                    {renderHomeWhat(props)}
+                    {renderHomeHow(props)}
                 </React.Fragment>
             )
         }

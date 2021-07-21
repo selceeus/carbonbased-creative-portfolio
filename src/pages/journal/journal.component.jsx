@@ -24,9 +24,9 @@ const Journal = props => {
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
-    const renderJournalHero = apiData => {
+    const renderJournalHero = props => {
 
-        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
+        const sectionTitle = () => { return{ __html: sanitize(props.title.rendered) } };
 
         return (
             <div className="hero">
@@ -35,9 +35,9 @@ const Journal = props => {
         );
     }
 
-    const renderJournalEntries = apiData => {
+    const renderJournalEntries = props => {
 
-        let journalItems = apiData.map((item, index) =>
+        let journalItems = props.map((item, index) =>
             <li key={index}>
                 <h3>{parse(item.title.rendered)}</h3>
                 {parse(item.excerpt.rendered)}
@@ -60,15 +60,15 @@ const Journal = props => {
         );
     }
 
-    const renderPage = (apiData, apiPostData) => {
+    const renderPage = (props, apiPostData) => {
 
-        if(!Object.keys(apiData).length > 0) {
+        if(!Object.keys(props).length > 0) {
             return <Loader />;
         }
         else {
             return(
                 <React.Fragment>
-                    {renderJournalHero(apiData)}
+                    {renderJournalHero(props)}
                     {renderJournalEntries(apiPostData)}
                 </React.Fragment>
             )

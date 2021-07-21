@@ -23,69 +23,69 @@ function About() {
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
-    const renderAboutHero = apiData => {
+    const renderAboutHero = props => {
 
         //Hero Section
-        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
-        const sectionLead = () => { return{ __html: sanitize(apiData.acf.section_lead.content) } };
+        const sectionTitle = () => { return{ __html: sanitize(props.title.rendered) } };
+        const sectionLead = () => { return{ __html: sanitize(props.acf.section_lead.content) } };
 
         return (
             <div className="hero">
-            {apiData.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
-            {apiData.acf.section_lead.content && <div dangerouslySetInnerHTML={sectionLead()}></div>}
+            {props.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
+            {props.acf.section_lead.content && <div dangerouslySetInnerHTML={sectionLead()}></div>}
             </div>
         );
     }
 
-    const renderAboutApproach = apiData => {
+    const renderAboutApproach = props => {
 
         //Approach Section
-        const approachLead = () => { return{ __html: sanitize(apiData.acf.approach_section.headline) } };
-        const approachDiscover = () => { return{ __html: sanitize(apiData.acf.approach_section.approach_items[0].content) } };
-        const approachCreate = () => { return{ __html: sanitize(apiData.acf.approach_section.approach_items[1].content) } };
-        const approachSupport = () => { return{ __html: sanitize(apiData.acf.approach_section.approach_items[2].content) } };
+        const approachLead = () => { return{ __html: sanitize(props.acf.approach_section.headline) } };
+        const approachDiscover = () => { return{ __html: sanitize(props.acf.approach_section.approach_items[0].content) } };
+        const approachCreate = () => { return{ __html: sanitize(props.acf.approach_section.approach_items[1].content) } };
+        const approachSupport = () => { return{ __html: sanitize(props.acf.approach_section.approach_items[2].content) } };
 
         return(
             <div className="approach">
-                {apiData.acf.approach_section.headline && <div dangerouslySetInnerHTML={approachLead()}></div>}
-                {apiData.acf.approach_section.approach_items[0].content && <div dangerouslySetInnerHTML={approachDiscover()}></div>}
-                {apiData.acf.approach_section.approach_items[1].content && <div dangerouslySetInnerHTML={approachCreate()}></div>}
-                {apiData.acf.approach_section.approach_items[2].content && <div dangerouslySetInnerHTML={approachSupport()}></div>}
+                {props.acf.approach_section.headline && <div dangerouslySetInnerHTML={approachLead()}></div>}
+                {props.acf.approach_section.approach_items[0].content && <div dangerouslySetInnerHTML={approachDiscover()}></div>}
+                {props.acf.approach_section.approach_items[1].content && <div dangerouslySetInnerHTML={approachCreate()}></div>}
+                {props.acf.approach_section.approach_items[2].content && <div dangerouslySetInnerHTML={approachSupport()}></div>}
             </div>
         )
     }
 
-    const renderAboutExperience = apiData => {
+    const renderAboutExperience = props => {
 
         //Experience Section
-        const expLead = () => { return{ __html: sanitize(apiData.acf.experience_section.headline) } };
-        const expCreative = () => { return{ __html: sanitize(apiData.acf.experience_section.experience_items[0].content) } };
-        const expProduct = () => { return{ __html: sanitize(apiData.acf.experience_section.experience_items[1].content) } };
-        const expDev = () => { return{ __html: sanitize(apiData.acf.experience_section.experience_items[2].content) } };
-        const expMarketing = () => { return{ __html: sanitize(apiData.acf.experience_section.experience_items[3].content) } };
+        const expLead = () => { return{ __html: sanitize(props.acf.experience_section.headline) } };
+        const expCreative = () => { return{ __html: sanitize(props.acf.experience_section.experience_items[0].content) } };
+        const expProduct = () => { return{ __html: sanitize(props.acf.experience_section.experience_items[1].content) } };
+        const expDev = () => { return{ __html: sanitize(props.acf.experience_section.experience_items[2].content) } };
+        const expMarketing = () => { return{ __html: sanitize(props.acf.experience_section.experience_items[3].content) } };
 
         return(
             <div className="experience">
-                {apiData.acf.experience_section.headline && <div dangerouslySetInnerHTML={expLead()}></div>}
-                {apiData.acf.experience_section.experience_items[0].content && <div dangerouslySetInnerHTML={expCreative()}></div>}
-                {apiData.acf.experience_section.experience_items[1].content && <div dangerouslySetInnerHTML={expProduct()}></div>}
-                {apiData.acf.experience_section.experience_items[2].content && <div dangerouslySetInnerHTML={expDev()}></div>}
-                {apiData.acf.experience_section.experience_items[3].content && <div dangerouslySetInnerHTML={expMarketing()}></div>}
+                {props.acf.experience_section.headline && <div dangerouslySetInnerHTML={expLead()}></div>}
+                {props.acf.experience_section.experience_items[0].content && <div dangerouslySetInnerHTML={expCreative()}></div>}
+                {props.acf.experience_section.experience_items[1].content && <div dangerouslySetInnerHTML={expProduct()}></div>}
+                {props.acf.experience_section.experience_items[2].content && <div dangerouslySetInnerHTML={expDev()}></div>}
+                {props.acf.experience_section.experience_items[3].content && <div dangerouslySetInnerHTML={expMarketing()}></div>}
             </div>
         )
     }
 
-    const renderPage = apiData => {
+    const renderPage = props => {
 
-        if(!Object.keys(apiData).length > 0) {
+        if(!Object.keys(props).length > 0) {
             return <Loader />;
         }
         else {
             return(
                 <React.Fragment>
-                    {renderAboutHero(apiData)}
-                    {renderAboutApproach(apiData)}
-                    {renderAboutExperience(apiData)}
+                    {renderAboutHero(props)}
+                    {renderAboutApproach(props)}
+                    {renderAboutExperience(props)}
                     <InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/>
                 </React.Fragment>
             )

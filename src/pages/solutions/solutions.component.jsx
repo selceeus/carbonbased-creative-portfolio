@@ -23,40 +23,40 @@ function Solutions() {
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
-    const renderSolutionsHero = apiData => {
+    const renderSolutionsHero = props => {
 
-        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
-        const sectionLead = () => { return{ __html: sanitize(apiData.acf.section_lead.content) } };
+        const sectionTitle = () => { return{ __html: sanitize(props.title.rendered) } };
+        const sectionLead = () => { return{ __html: sanitize(props.acf.section_lead.content) } };
 
         return (
             <div className="hero">
-                {apiData.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
-                {apiData.acf.section_lead.content && <div dangerouslySetInnerHTML={sectionLead()}></div>}
+                {props.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
+                {props.acf.section_lead.content && <div dangerouslySetInnerHTML={sectionLead()}></div>}
             </div>
         );
     }
 
-    const renderSolutionsServices = apiData => {
+    const renderSolutionsServices = props => {
 
-        const servicesTitle = () => { return{ __html: sanitize(apiData.acf.services_section.headline) } };
-        const servicesDev = () => { return{ __html: sanitize(apiData.acf.services_section.services_item[0].content) } };
-        const servicesCreative = () => { return{ __html: sanitize(apiData.acf.services_section.services_item[1].content) } };
-        const servicesDigi = () => { return{ __html: sanitize(apiData.acf.services_section.services_item[2].content) } };
+        const servicesTitle = () => { return{ __html: sanitize(props.acf.services_section.headline) } };
+        const servicesDev = () => { return{ __html: sanitize(props.acf.services_section.services_item[0].content) } };
+        const servicesCreative = () => { return{ __html: sanitize(props.acf.services_section.services_item[1].content) } };
+        const servicesDigi = () => { return{ __html: sanitize(props.acf.services_section.services_item[2].content) } };
 
         return (
             <div className="services">
-                {apiData.acf.services_section.headline && <h1 dangerouslySetInnerHTML={servicesTitle()}></h1>}
-                {apiData.acf.services_section.services_item[0].content && <div dangerouslySetInnerHTML={servicesDev()}></div>}
-                {apiData.acf.services_section.services_item[1].content && <div dangerouslySetInnerHTML={servicesCreative()}></div>}
-                {apiData.acf.services_section.services_item[2].content && <div dangerouslySetInnerHTML={servicesDigi()}></div>}
+                {props.acf.services_section.headline && <h1 dangerouslySetInnerHTML={servicesTitle()}></h1>}
+                {props.acf.services_section.services_item[0].content && <div dangerouslySetInnerHTML={servicesDev()}></div>}
+                {props.acf.services_section.services_item[1].content && <div dangerouslySetInnerHTML={servicesCreative()}></div>}
+                {props.acf.services_section.services_item[2].content && <div dangerouslySetInnerHTML={servicesDigi()}></div>}
             </div>
         );
     }
 
-    const renderSolutionsProducts = apiData => {
+    const renderSolutionsProducts = props => {
 
-        const productsTitle = () => { return{ __html: sanitize(apiData.acf.product_section.headline) } };
-        const productsItems = apiData.acf.product_section.product_items.map( (item, index) =>
+        const productsTitle = () => { return{ __html: sanitize(props.acf.product_section.headline) } };
+        const productsItems = props.acf.product_section.product_items.map( (item, index) =>
             <li key={index}>
                 <img src={parse(item.icon)} alt="" />
                 {parse(item.content)}
@@ -65,23 +65,23 @@ function Solutions() {
 
         return (
             <div className="products">
-                {apiData.acf.product_section.headline && <h1 dangerouslySetInnerHTML={productsTitle()}></h1>}
-                {apiData.acf.product_section.product_items && <ul>{productsItems}</ul>}
+                {props.acf.product_section.headline && <h1 dangerouslySetInnerHTML={productsTitle()}></h1>}
+                {props.acf.product_section.product_items && <ul>{productsItems}</ul>}
             </div>
         );
     }
 
-    const renderPage = apiData => {
+    const renderPage = props => {
 
-        if(!Object.keys(apiData).length > 0) {
+        if(!Object.keys(props).length > 0) {
             return <Loader />;
         }
         else {
             return(
                 <React.Fragment>
-                    {renderSolutionsHero(apiData)}
-                    {renderSolutionsServices(apiData)}
-                    {renderSolutionsProducts(apiData)}
+                    {renderSolutionsHero(props)}
+                    {renderSolutionsServices(props)}
+                    {renderSolutionsProducts(props)}
                 </React.Fragment>
             )
         }

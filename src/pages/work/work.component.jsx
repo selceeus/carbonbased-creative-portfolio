@@ -24,20 +24,20 @@ function Work() {
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
-    const renderWorkHero = apiData => {
+    const renderWorkHero = props => {
 
-        const sectionTitle = () => { return{ __html: sanitize(apiData.title.rendered) } };
+        const sectionTitle = () => { return{ __html: sanitize(props.title.rendered) } };
 
         return (
             <div className="hero">
-                {apiData.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
+                {props.title.rendered && <h1 dangerouslySetInnerHTML={sectionTitle()}></h1>}
             </div>
         );
     }
 
-    const renderWorkProjects = apiData => {
+    const renderWorkProjects = props => {
 
-        let workItems = apiData.map((item, index) =>
+        let workItems = props.map((item, index) =>
             <li key={index}>
             {item.acf.projects_section &&
                 <img src={parse(item.acf.projects_section.project_hero_image)} alt="" loading="lazy"></img>
@@ -63,15 +63,15 @@ function Work() {
         );
     }
 
-    const renderPage = (apiData, apiPostData) => {
+    const renderPage = (props, apiPostData) => {
 
-        if(!Object.keys(apiData).length > 0) {
+        if(!Object.keys(props).length > 0) {
             return <Loader />;
         }
         else {
             return(
                 <React.Fragment>
-                    {renderWorkHero(apiData)}
+                    {renderWorkHero(props)}
                     {renderWorkProjects(apiPostData)}
                 </React.Fragment>
             )

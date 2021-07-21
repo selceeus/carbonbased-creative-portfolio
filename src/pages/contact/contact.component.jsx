@@ -40,13 +40,13 @@ function Contact() {
         message: ""
     };
 
-    const renderContactHero = apiData => {
+    const renderContactHero = props => {
 
-        const siteLead = () => { return{ __html: sanitize(apiData.title.rendered) } };
+        const siteLead = () => { return{ __html: sanitize(props.title.rendered) } };
 
         return (
             <div className="hero">
-            {apiData.title.rendered && <div dangerouslySetInnerHTML={siteLead()}></div>}
+            {props.title.rendered && <div dangerouslySetInnerHTML={siteLead()}></div>}
             </div>
         );
     }
@@ -96,37 +96,37 @@ function Contact() {
         );
     }
 
-    const renderContactInformation = apiData => {
+    const renderContactInformation = props => {
 
-        const siteLead = () => { return{ __html: sanitize(apiData.acf.site_lead.content) } };
+        const siteLead = () => { return{ __html: sanitize(props.acf.site_lead.content) } };
 
         return (
             <div className="hero">
-            {apiData.acf.site_lead.content && <div dangerouslySetInnerHTML={siteLead()}></div>}
+            {props.acf.site_lead.content && <div dangerouslySetInnerHTML={siteLead()}></div>}
             </div>
         );
     }
 
-    const renderContactMap = apiData => {
+    const renderContactMap = props => {
 
-        const siteLead = () => { return{ __html: sanitize(apiData.acf.site_lead.content) } };
+        const siteLead = () => { return{ __html: sanitize(props.acf.site_lead.content) } };
 
         return (
             <div className="hero">
-            {apiData.acf.site_lead.content && <div dangerouslySetInnerHTML={siteLead()}></div>}
+            {props.acf.site_lead.content && <div dangerouslySetInnerHTML={siteLead()}></div>}
             </div>
         );
     }
 
-    const renderPage = apiData => {
+    const renderPage = props => {
 
-        if(!Object.keys(apiData).length > 0) {
+        if(!Object.keys(props).length > 0) {
             return <Loader />;
         }
         else {
             return(
                 <React.Fragment>
-                    {renderContactHero(apiData)}
+                    {renderContactHero(props)}
                     {renderContactForm()}
                     {/* <Map /> */}
                 </React.Fragment>

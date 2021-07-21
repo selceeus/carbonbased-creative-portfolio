@@ -25,39 +25,39 @@ function DetailedJournal() {
     const [requestError, setRequestError] = useState([]);
     const sanitize = dompurify.sanitize;
 
-    const renderDetailedJournalHero = apiData => {
+    const renderDetailedJournalHero = props => {
 
-        const sectionTitle = () => { return{ __html: sanitize(apiData[0].title.rendered) } };
+        const sectionTitle = () => { return{ __html: sanitize(props[0].title.rendered) } };
 
         return (
             <div className="hero">
-                {apiData[0].title.rendered && <h2 dangerouslySetInnerHTML={sectionTitle()}></h2>}
+                {props[0].title.rendered && <h2 dangerouslySetInnerHTML={sectionTitle()}></h2>}
             </div>
         );
     }
 
-    const renderDetailedJournalContent = apiData => {
+    const renderDetailedJournalContent = props => {
 
-        const sectionContent = () => { return{ __html: sanitize(apiData[0].content.rendered) } };
+        const sectionContent = () => { return{ __html: sanitize(props[0].content.rendered) } };
 
         return (
             <div className="hero">
-                {apiData[0].content.rendered && <div dangerouslySetInnerHTML={sectionContent()}></div>}
+                {props[0].content.rendered && <div dangerouslySetInnerHTML={sectionContent()}></div>}
             </div>
         );
     }
 
-    const renderPage = apiData => {
+    const renderPage = props => {
 
-        if(!Object.keys(apiData).length > 0) {
+        if(!Object.keys(props).length > 0) {
             return <Loader />;
         }
         else {
             return(
                 <React.Fragment>
                     <h1>Journal</h1>
-                    {renderDetailedJournalHero(apiData)}
-                    {renderDetailedJournalContent(apiData)}
+                    {renderDetailedJournalHero(props)}
+                    {renderDetailedJournalContent(props)}
                 </React.Fragment>
             )
         }
