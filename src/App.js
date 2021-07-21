@@ -5,7 +5,7 @@ import {
     Switch,
     Route,
     NavLink
-  } from "react-router-dom";
+} from "react-router-dom";
 //import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -46,13 +46,9 @@ function App() {
 
     return (
         <section className="App">
-
             <Header />
-            
             <main role="main">
-
                 <Router>
-
                     <section className="nav-container">
                         <nav>
                             <ul>
@@ -102,13 +98,9 @@ function App() {
                             </Route>
                         </Switch>
                     </AnimatePresence>
-
                 </Router>
-
             </main>
-
             <Footer />
-
         </section>
     );
 }

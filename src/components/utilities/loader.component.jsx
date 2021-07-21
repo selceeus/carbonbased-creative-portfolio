@@ -11,7 +11,7 @@ const Loader = props => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            <Spinner style={{ width: '3rem', height: '3rem' }} />{' '}
+            <Spinner style={{ width: '5rem', height: '5rem' }} />
         </motion.div>
     );
 };
