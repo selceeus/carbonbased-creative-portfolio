@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useFetch } from '../../components/utilities/api-cache.component';
 import axios from 'axios';
 import dompurify from 'dompurify';
 import { motion } from 'framer-motion';
@@ -97,6 +98,8 @@ const Home = props => {
         fetchData();
     }, []);
 
+    const test = data;
+
     return(
         <motion.div
             initial={{ opacity: 0}}
@@ -104,8 +107,8 @@ const Home = props => {
             exit={{ opacity: 0 }}
         >
             <section className="home">
-                {console.log(data)}
-                {renderPage(data)}
+                {console.log(test)}
+                {renderPage(test)}
             </section>
         </motion.div>
     );
