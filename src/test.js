@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useFetch } from '../../components/utilties/api-cache.component';
+import { useFetch } from '../../components/utilities/custom-hook.component';
 import './App.css';
 
 const App = () => {
