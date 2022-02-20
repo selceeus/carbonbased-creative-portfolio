@@ -1,0 +1,12 @@
+.nav-container nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.nav-container nav ul li {
+  display: inline-block;
+}
+/*# sourceMappingURL=App.css.map */
