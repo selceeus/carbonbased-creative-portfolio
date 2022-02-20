@@ -46,9 +46,9 @@ function Solutions() {
         return (
             <div className="services">
                 {props.acf.services_section.headline && <h1 dangerouslySetInnerHTML={servicesTitle()}></h1>}
-                {props.acf.services_section.services_item[0].content && <div dangerouslySetInnerHTML={servicesDev()}></div>}
-                {props.acf.services_section.services_item[1].content && <div dangerouslySetInnerHTML={servicesCreative()}></div>}
-                {props.acf.services_section.services_item[2].content && <div dangerouslySetInnerHTML={servicesDigi()}></div>}
+                {props.acf.services_section.services_item[0] && <div dangerouslySetInnerHTML={servicesDev()}></div>}
+                {props.acf.services_section.services_item[1] && <div dangerouslySetInnerHTML={servicesCreative()}></div>}
+                {props.acf.services_section.services_item[2] && <div dangerouslySetInnerHTML={servicesDigi()}></div>}
             </div>
         );
     }

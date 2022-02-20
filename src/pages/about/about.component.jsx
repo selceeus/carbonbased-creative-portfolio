@@ -48,9 +48,9 @@ function About() {
         return(
             <div className="approach">
                 {props.acf.approach_section.headline && <div dangerouslySetInnerHTML={approachLead()}></div>}
-                {props.acf.approach_section.approach_items[0].content && <div dangerouslySetInnerHTML={approachDiscover()}></div>}
-                {props.acf.approach_section.approach_items[1].content && <div dangerouslySetInnerHTML={approachCreate()}></div>}
-                {props.acf.approach_section.approach_items[2].content && <div dangerouslySetInnerHTML={approachSupport()}></div>}
+                {props.acf.approach_section.approach_items[0] && <div dangerouslySetInnerHTML={approachDiscover()}></div>}
+                {props.acf.approach_section.approach_items[1] && <div dangerouslySetInnerHTML={approachCreate()}></div>}
+                {props.acf.approach_section.approach_items[2] && <div dangerouslySetInnerHTML={approachSupport()}></div>}
             </div>
         )
     }
@@ -67,10 +67,10 @@ function About() {
         return(
             <div className="experience">
                 {props.acf.experience_section.headline && <div dangerouslySetInnerHTML={expLead()}></div>}
-                {props.acf.experience_section.experience_items[0].content && <div dangerouslySetInnerHTML={expCreative()}></div>}
-                {props.acf.experience_section.experience_items[1].content && <div dangerouslySetInnerHTML={expProduct()}></div>}
-                {props.acf.experience_section.experience_items[2].content && <div dangerouslySetInnerHTML={expDev()}></div>}
-                {props.acf.experience_section.experience_items[3].content && <div dangerouslySetInnerHTML={expMarketing()}></div>}
+                {props.acf.experience_section.experience_items[0] && <div dangerouslySetInnerHTML={expCreative()}></div>}
+                {props.acf.experience_section.experience_items[1] && <div dangerouslySetInnerHTML={expProduct()}></div>}
+                {props.acf.experience_section.experience_items[2] && <div dangerouslySetInnerHTML={expDev()}></div>}
+                {props.acf.experience_section.experience_items[3] && <div dangerouslySetInnerHTML={expMarketing()}></div>}
             </div>
         )
     }
@@ -86,7 +86,7 @@ function About() {
                     {renderAboutHero(props)}
                     {renderAboutApproach(props)}
                     {renderAboutExperience(props)}
-                    <InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/>
+                    {/* <InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/> */}
                 </React.Fragment>
             )
         }
