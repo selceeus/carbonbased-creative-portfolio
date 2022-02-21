@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import InstagramFeed  from 'react-ig-feed';
 
+//Animation
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 //Page Components
 import AboutHero from '../../components/about/aboutHero.component';
 import AboutApproach from '../../components/about/aboutApproach.component';
@@ -20,27 +24,29 @@ const authAxios = axios
         }
 });
 
+const inviewVariants = {
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: -60}
+};
+
 function About() {
 
     const [data, setData] = useState([]);
     const [requestError, setRequestError] = useState([]);
 
-    const renderPage = props => {
+    //In View Animations
+    const controls = useAnimation();
+    const [ref, inView] = useInView();
 
-        if(!Object.keys(props).length > 0) {
-            return <Loader />;
+    //Hooks
+    useEffect(() => {
+        if (inView) {
+            controls.start("visible");
         }
         else {
-            return(
-                <React.Fragment>
-                    {AboutHero(props)}
-                    {AboutApproach(props)}
-                    {AboutExperience(props)}
-                    {<InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/>}
-                </React.Fragment>
-            )
+            controls.start("hidden");
         }
-    }
+    }, [controls, inView]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,7 +60,40 @@ function About() {
         };
         fetchData();
     }, []);
-    
+
+    const renderPage = props => {
+
+        if(!Object.keys(props).length > 0) {
+            return <Loader />;
+        }
+        else {
+            return(
+                <React.Fragment>
+                    {AboutHero(props)}
+                    {AboutApproach(props)}
+                    <motion.div
+                        ref={ref}
+                        animate={controls}
+                        initial="hidden"
+                        variants={inviewVariants}
+                        transition={{ ease: "easeOut", duration: .5 }}
+                    >
+                    {AboutExperience(props)}
+                    </motion.div>
+                    <motion.div
+                        ref={ref}
+                        animate={controls}
+                        initial="hidden"
+                        variants={inviewVariants}
+                        transition={{ ease: "easeOut", duration: .5 }}
+                    >
+                        {<InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/>}
+                    </motion.div>
+                </React.Fragment>
+            )
+        }
+    }
+
     return(
         <section className="about">
             {renderPage(data)}

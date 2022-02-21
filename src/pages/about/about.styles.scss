@@ -31,4 +31,29 @@ $padding: 0 3vw 3vw;
             
         }
     }
+
+    ._2R-kh {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3vw;
+
+        ._wPDyp {
+            width: 30vw;
+            height: 30vh;
+            max-height: 25rem;
+            overflow: hidden;
+            justify-content: center;
+            transition: opacity .5s;
+
+            &:hover {
+                opacity: .7;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
 }
