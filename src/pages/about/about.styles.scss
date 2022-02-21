@@ -1,16 +1,27 @@
+
+$padding: 0 3vw 3vw;
+
 .about {
 
     .hero {
-        padding:0 3vw 3vw; 
+        padding: $padding; 
     }
 
     .approach {
-        padding:0 3vw 3vw; 
+        padding: $padding;
+
+        &-headline {
+            padding:2vw 0;
+        }
+        
+        &-item {
+
+        }
     }
 
     .experience {
         background: red;
-        padding:0 3vw 3vw;
+        padding: $padding;
 
         &-headline {
             padding:2vw 0;
