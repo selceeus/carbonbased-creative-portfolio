@@ -1,0 +1,23 @@
+.about {
+
+    .hero {
+        padding:0 3vw 3vw; 
+    }
+
+    .approach {
+        padding:0 3vw 3vw; 
+    }
+
+    .experience {
+        background: red;
+        padding:0 3vw 3vw;
+
+        &-headline {
+            padding:2vw 0;
+        }
+
+        &-item {
+            
+        }
+    }
+}
