@@ -44,15 +44,53 @@ $padding: 0 3vw 3vw;
             max-height: 25rem;
             overflow: hidden;
             justify-content: center;
-            transition: opacity .5s;
+            transition: all .25s;
+            position: relative;
+            background: #fff;
+
+            a {
+                
+            }
 
             &:hover {
-                opacity: .7;
+                z-index: 100;
+                transform: scale(1.06);
+                box-shadow: 0 0 14px rgba(0, 0, 0, 0.2)  ; 
+	            -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.2)  ; 
+	            -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.2)  ;
+
+                img, video {
+                    opacity: .7;
+                }
             }
 
             img {
                 width: 100%;
                 height: auto;
+            }
+
+            video {
+                width: 100%;
+                height: auto;
+            }
+
+            ._3xnQP {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+                text-align: center;
+                color: rgba(255,255,255,.5);
+
+                .icon {
+                    svg {
+                        width: 102px!important;
+                        height: 220px;
+                    }
+                }
             }
         }
     }

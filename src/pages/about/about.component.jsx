@@ -87,7 +87,7 @@ function About() {
                         variants={inviewVariants}
                         transition={{ ease: "easeOut", duration: .5 }}
                     >
-                        {<InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="3"/>}
+                        {<InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="4"/>}
                     </motion.div>
                 </React.Fragment>
             )
