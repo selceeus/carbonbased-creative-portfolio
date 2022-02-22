@@ -85,7 +85,7 @@ function About() {
                         animate={controls}
                         initial="hidden"
                         variants={inviewVariants}
-                        transition={{ ease: "easeOut", duration: .5 }}
+                        transition={{ ease: "easeOut", duration: .65 }}
                     >
                         {<InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="4"/>}
                     </motion.div>

@@ -3,17 +3,22 @@ import { Spinner } from 'reactstrap';
 import { motion } from "framer-motion";
 import './loader.styles.scss';
 
+const motionVars = {
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: -5 },
+    }
 
-const Loader = props => {
+const Loader = () => {
     return (
         <motion.div className='loader'
-            initial={{ opacity: 0}}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial="hidden"
+            animate="visible"
+            transition={{ ease: "easeOut", duration: 2 }}
+            variants={motionVars}
         >
             <Spinner style={{ width: '5rem', height: '5rem' }} />
         </motion.div>
     );
-};
+}
 
 export default Loader;
