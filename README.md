@@ -1,7 +1,7 @@
 # Carbonbased Creative Portfolio
 
 
-<p></p>
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
