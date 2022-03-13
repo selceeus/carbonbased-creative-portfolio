@@ -1,13 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    NavLink
+    BrowserRouter,
+    Routes,
+    Route
 } from "react-router-dom";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 //Imported Components 
 import Header from './components/header/header.component';
@@ -46,59 +45,24 @@ function App() {
 
     return (
         <section className="App">
-            <Header />
+            
             <main role="main">
-                <Router>
-                    <section className="nav-container">
-                        <nav>
-                            <ul>
-                                <li>
-                                    <NavLink to="/">Home</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/about">About</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/solutions">Solutions</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/work">Work</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/journal">Journal</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/contact">Contact</NavLink>
-                                </li>
-                            </ul>
-                        </nav>
-                    </section>
 
+                <BrowserRouter>
+                <Header />
                     <AnimatePresence exitBeforeEnter>
-                        <Switch>
-                            <Route exact path="/">
-                                <Home />
-                            </Route>
-                            <Route path="/about">
-                                <About />
-                            </Route>
-                            <Route path="/solutions">
-                                <Solutions />
-                            </Route>
-                            <Route exact path="/work">
-                                <Work />
-                            </Route>
-                            <Route path="/work/:slug" component={DetailedWork}></Route>
-                            <Route exact path="/journal">
-                                <Journal />
-                            </Route>
-                            <Route path="/journal/:slug" component={DetailedJournal}></Route>
-                            <Route path="/contact">
-                                <Contact />
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="about" element={<About />} />
+                            <Route path="solutions" element={<Solutions />} />
+                            <Route path="work" element={<Work />} />
+                            <Route path="work/:id" element={<DetailedWork />} />
+                            <Route path="journal" element={<Journal />} />
+                            <Route path="journal/:id" element={<DetailedJournal />} />
+                            <Route path="contact" element={<Contact />} />
+                        </Routes>
                     </AnimatePresence>
-                </Router>
+                </BrowserRouter>
             </main>
             <Footer />
         </section>
