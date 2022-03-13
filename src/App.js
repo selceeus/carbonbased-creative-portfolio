@@ -45,9 +45,7 @@ function App() {
 
     return (
         <section className="App">
-            
             <main role="main">
-
                 <BrowserRouter>
                 <Header />
                     <AnimatePresence exitBeforeEnter>
