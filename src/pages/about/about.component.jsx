@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import InstagramFeed  from 'react-ig-feed';
 
 //Animation
 import { useAnimation, motion } from "framer-motion";
@@ -14,7 +13,7 @@ import Loader from '../../components/utilities/loader.component';
 
 import './about.styles.scss';
 
-const {REACT_APP_API_URL, REACT_APP_INSTA_TOKEN} = process.env;
+const {REACT_APP_API_URL} = process.env;
 
 const authAxios = axios
     .create({
@@ -87,7 +86,6 @@ function About() {
                         variants={inviewVariants}
                         transition={{ ease: "easeOut", duration: .65 }}
                     >
-                        {<InstagramFeed token={REACT_APP_INSTA_TOKEN}  counter="4"/>}
                     </motion.div>
                 </React.Fragment>
             )
