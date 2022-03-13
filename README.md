@@ -30,7 +30,7 @@ A work in progress uses ReactJS, and the WordPress REST API. The project is a po
    ```
 2. Install NPM packages
    ```sh
-   npm install
+   yarn install
    ```
 3. Open Your Browser `config.js`
    ```js
