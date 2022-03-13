@@ -28,7 +28,7 @@ A work in progress uses ReactJS, and the WordPress REST API. The project is a po
    ```sh
    git clone https://github.com/selceeus/matthewa-portfolio.git
    ```
-2. Install NPM packages
+2. Install Node Modules
    ```sh
    yarn install
    ```
@@ -45,6 +45,6 @@ A work in progress uses ReactJS, and the WordPress REST API. The project is a po
 
 Your Name - [Matt Andrews](https://carbonbasedcreative.com) - matt@carbonbasedcreative.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/selceeus/matthewa-portfolio](https://github.com/selceeus/matthewa-portfolio)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
