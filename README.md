@@ -47,6 +47,6 @@ A work in progress uses ReactJS, and the WordPress REST API. The project is a po
 
 Your Name - [Matt Andrews](https://carbonbasedcreative.com) - matt@carbonbasedcreative.com
 
-Project Link: [https://github.com/selceeus/matthewa-portfolio](https://github.com/selceeus/carbonbased-creative-portfolio)
+Project Link: [https://github.com/selceeus/carbonbased-creative-portfolio](https://github.com/selceeus/carbonbased-creative-portfolio)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
