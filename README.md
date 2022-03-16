@@ -28,7 +28,7 @@ A work in progress uses ReactJS, and the WordPress REST API. The project is a po
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/selceeus/matthewa-portfolio.git
+   git clone https://github.com/selceeus/carbonbased-creative-portfolio.git
    ```
 2. Install Node Modules
    ```sh
@@ -47,6 +47,6 @@ A work in progress uses ReactJS, and the WordPress REST API. The project is a po
 
 Your Name - [Matt Andrews](https://carbonbasedcreative.com) - matt@carbonbasedcreative.com
 
-Project Link: [https://github.com/selceeus/matthewa-portfolio](https://github.com/selceeus/matthewa-portfolio)
+Project Link: [https://github.com/selceeus/matthewa-portfolio](https://github.com/selceeus/carbonbased-creative-portfolio)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
